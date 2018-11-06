@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E3155FD21914C3E003BBB80 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3155FC21914C3E003BBB80 /* Location.swift */; };
 		1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E79218B861A0035B977 /* AppDelegate.swift */; };
 		1EDD5E7C218B861A0035B977 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7B218B861A0035B977 /* ViewController.swift */; };
 		1EDD5E7F218B861A0035B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7D218B861A0035B977 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E3155FC21914C3E003BBB80 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1EDD5E76218B861A0035B977 /* Safe2HomeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe2HomeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDD5E79218B861A0035B977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EDD5E7B218B861A0035B977 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */,
 				1EDD5E88218B861A0035B977 /* Info.plist */,
 				1EDD5E80218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld */,
+				1E3155FC21914C3E003BBB80 /* Location.swift */,
 			);
 			path = Safe2HomeIOS;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDD5E7C218B861A0035B977 /* ViewController.swift in Sources */,
+				1E3155FD21914C3E003BBB80 /* Location.swift in Sources */,
 				1EDD5E82218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld in Sources */,
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
 			);
