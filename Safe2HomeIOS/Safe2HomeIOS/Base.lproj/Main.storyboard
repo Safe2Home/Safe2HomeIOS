@@ -9,27 +9,40 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Safe2HomeIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="Safe2HomeIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IA8-p4-MHp">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="IA8-p4-MHp" customClass="HomeMapView" customModule="Safe2HomeIOS" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-hn-oKT">
-                                <rect key="frame" x="0.0" y="489" width="375" height="178"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-hn-oKT">
+                                <rect key="frame" x="0.0" y="487" width="375" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="XS4-Rl-T6C"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="IA8-p4-MHp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="79S-6x-1Qp"/>
+                            <constraint firstItem="Xdh-hn-oKT" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7qa-3I-Z4O"/>
+                            <constraint firstItem="IA8-p4-MHp" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="99x-jF-lvJ"/>
+                            <constraint firstItem="Xdh-hn-oKT" firstAttribute="top" secondItem="IA8-p4-MHp" secondAttribute="bottom" constant="-3" id="a3B-fe-s1S"/>
+                            <constraint firstItem="Xdh-hn-oKT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bcG-2m-xa5"/>
+                            <constraint firstItem="Xdh-hn-oKT" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fh8-DI-h4j"/>
+                            <constraint firstItem="IA8-p4-MHp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="l1Z-07-SWa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="map" destination="IA8-p4-MHp" id="XR7-nX-NRe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
