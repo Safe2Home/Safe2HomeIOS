@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1E3155FD21914C3E003BBB80 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3155FC21914C3E003BBB80 /* Location.swift */; };
+		1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3155FE21915699003BBB80 /* HomeMapView.swift */; };
 		1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E79218B861A0035B977 /* AppDelegate.swift */; };
-		1EDD5E7C218B861A0035B977 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7B218B861A0035B977 /* ViewController.swift */; };
+		1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7B218B861A0035B977 /* HomeVC.swift */; };
 		1EDD5E7F218B861A0035B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7D218B861A0035B977 /* Main.storyboard */; };
 		1EDD5E82218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E80218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld */; };
 		1EDD5E84218B861A0035B977 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EDD5E83218B861A0035B977 /* Assets.xcassets */; };
@@ -37,9 +38,10 @@
 
 /* Begin PBXFileReference section */
 		1E3155FC21914C3E003BBB80 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1E3155FE21915699003BBB80 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		1EDD5E76218B861A0035B977 /* Safe2HomeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe2HomeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDD5E79218B861A0035B977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EDD5E7B218B861A0035B977 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1EDD5E7B218B861A0035B977 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		1EDD5E7E218B861A0035B977 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1EDD5E81218B861A0035B977 /* Safe2HomeIOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Safe2HomeIOS.xcdatamodel; sourceTree = "<group>"; };
 		1EDD5E83218B861A0035B977 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -102,13 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				1EDD5E79218B861A0035B977 /* AppDelegate.swift */,
-				1EDD5E7B218B861A0035B977 /* ViewController.swift */,
+				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				1EDD5E7D218B861A0035B977 /* Main.storyboard */,
 				1EDD5E83218B861A0035B977 /* Assets.xcassets */,
 				1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */,
 				1EDD5E88218B861A0035B977 /* Info.plist */,
 				1EDD5E80218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld */,
 				1E3155FC21914C3E003BBB80 /* Location.swift */,
+				1E3155FE21915699003BBB80 /* HomeMapView.swift */,
 			);
 			path = Safe2HomeIOS;
 			sourceTree = "<group>";
@@ -262,7 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EDD5E7C218B861A0035B977 /* ViewController.swift in Sources */,
+				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
+				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
 				1E3155FD21914C3E003BBB80 /* Location.swift in Sources */,
 				1EDD5E82218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld in Sources */,
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
@@ -441,6 +445,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -458,6 +463,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
