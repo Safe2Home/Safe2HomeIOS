@@ -81,11 +81,11 @@
             </objects>
             <point key="canvasLocation" x="-844" y="573"/>
         </scene>
-        <!--911-->
+        <!--AR-->
         <scene sceneID="1pb-Xj-fYS">
             <objects>
                 <navigationController id="66S-qL-Nnz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="911" image="phone" id="z44-bG-Sk7">
+                    <tabBarItem key="tabBarItem" title="AR" image="camera" id="z44-bG-Sk7">
                         <inset key="imageInsets" minX="0.0" minY="2" maxX="0.0" maxY="2"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bdx-mF-jGx">
@@ -133,23 +133,22 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0M-H7-s3w">
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0M-H7-s3w">
                                         <rect key="frame" x="82.883021835412592" y="50" width="207" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-PP-be3">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-PP-be3">
                                         <rect key="frame" x="141.1858498911663" y="101" width="92" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Search Route"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="XS4-Rl-T6C"/>
-                                    <constraint firstItem="OMl-PP-be3" firstAttribute="top" secondItem="l0M-H7-s3w" secondAttribute="bottom" constant="21" id="b1A-qq-8MA"/>
-                                    <constraint firstItem="ZxE-u8-7kt" firstAttribute="width" secondItem="Xdh-hn-oKT" secondAttribute="width" id="gcc-HX-c4I"/>
-                                    <constraint firstItem="l0M-H7-s3w" firstAttribute="top" secondItem="ZxE-u8-7kt" secondAttribute="bottom" constant="8" id="mhU-lS-shF"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -180,10 +179,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera" width="50" height="50"/>
         <image name="car" width="50" height="50"/>
         <image name="contact" width="50" height="50"/>
         <image name="home" width="50" height="50"/>
-        <image name="phone" width="50" height="50"/>
         <image name="play" width="50" height="50"/>
     </resources>
 </document>
