@@ -127,28 +127,33 @@
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xdh-hn-oKT">
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxE-u8-7kt">
-                                        <rect key="frame" x="90" y="21" width="192" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Destination" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZxE-u8-7kt">
+                                        <rect key="frame" x="0.0" y="21" width="375" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0M-H7-s3w">
-                                        <rect key="frame" x="82.883021835412592" y="50" width="207" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0M-H7-s3w">
+                                        <rect key="frame" x="83" y="50" width="207" height="30"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-PP-be3">
-                                        <rect key="frame" x="141.1858498911663" y="101" width="92" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-PP-be3">
+                                        <rect key="frame" x="141.5" y="101" width="92" height="30"/>
                                         <state key="normal" title="Search Route"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="l0M-H7-s3w" firstAttribute="centerX" secondItem="ZxE-u8-7kt" secondAttribute="centerX" id="2VE-A9-9WK"/>
+                                    <constraint firstItem="ZxE-u8-7kt" firstAttribute="width" secondItem="Xdh-hn-oKT" secondAttribute="width" id="8dd-kq-ng9"/>
+                                    <constraint firstItem="OMl-PP-be3" firstAttribute="top" secondItem="Xdh-hn-oKT" secondAttribute="top" constant="101" id="IKB-NF-APm"/>
+                                    <constraint firstItem="OMl-PP-be3" firstAttribute="centerX" secondItem="l0M-H7-s3w" secondAttribute="centerX" id="Izw-I0-ef8"/>
                                     <constraint firstAttribute="height" constant="180" id="XS4-Rl-T6C"/>
+                                    <constraint firstItem="l0M-H7-s3w" firstAttribute="top" secondItem="ZxE-u8-7kt" secondAttribute="bottom" constant="8" symbolic="YES" id="bkN-EU-p8R"/>
+                                    <constraint firstItem="l0M-H7-s3w" firstAttribute="leading" secondItem="Xdh-hn-oKT" secondAttribute="leading" constant="83" id="gKo-5w-kmg"/>
+                                    <constraint firstItem="OMl-PP-be3" firstAttribute="centerX" secondItem="Xdh-hn-oKT" secondAttribute="centerX" id="xt4-n5-XDD"/>
                                 </constraints>
                             </view>
                         </subviews>
