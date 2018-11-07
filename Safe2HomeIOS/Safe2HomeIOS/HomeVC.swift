@@ -10,14 +10,51 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
+class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+    
     let manager: CLLocationManager = global_manager
     var current_location: CLLocation?
     let regionRadius: CLLocationDistance = 1000
     @IBOutlet weak var map: HomeMapView!
     
+
+//    var isSearching = false
+//    // more about search bar see
+//    // https://www.youtube.com/watch?v=zgP_VHhkroE
+    
+    @IBOutlet weak var destinationLabel: UILabel!
+    
+    @IBOutlet weak var destinationText: UITextField!
+    
+    @IBOutlet weak var searchRoute: UIButton!
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var mainColor = UIColor(red: 24,
+                                green: 59,
+                                blue: 29,
+            alpha: 1)
+        
+        destinationLabel.textColor = UIColor.blue
+        
+        destinationLabel.textAlignment = .center
+        destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)
+        
+        searchRoute.layer.cornerRadius = 4
+        searchRoute.backgroundColor = .blue
+        searchRoute.center.x = self.view.center.x
+        searchRoute.center.y = self.view.center.y
+        
+        
+        destinationText.textAlignment = .center
+    
+        
+//        searchDestination.delegate = self
+//        searchDestination.returnKeyType = UIReturnKeyType.done
+
         switch CLLocationManager.authorizationStatus() {
         case .authorizedWhenInUse,.authorizedAlways:
             break
@@ -72,8 +109,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate{
         map.setRegion(coordinateRegion,animated: true)
         
     }
-    
-    
+
     
 
 
