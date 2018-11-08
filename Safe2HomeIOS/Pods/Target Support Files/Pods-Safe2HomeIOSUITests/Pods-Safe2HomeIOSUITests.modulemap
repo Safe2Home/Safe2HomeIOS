@@ -1,0 +1,6 @@
+framework module Pods_Safe2HomeIOSUITests {
+  umbrella header "Pods-Safe2HomeIOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
