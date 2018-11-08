@@ -38,7 +38,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
                                 blue: 29,
             alpha: 1)
         
-        destinationLabel.textColor = UIColor.blue
+        //destinationLabel.textColor = UIColor.blue
         
         destinationLabel.textAlignment = .center
         destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)

@@ -21,6 +21,7 @@
 		572578EE2193DA9C0095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578ED2193DA9C0095E5A4 /* GoogleService-Info.plist */; };
 		572578F02193DDC40095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */; };
 		572578F22193DE8D0095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */; };
+		572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572578F32193E37C0095E5A4 /* YouTubeViewController.swift */; };
 		8E6B0E9114088F12124B6403 /* Pods_Safe2HomeIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58566462903BAF7DCDD32B0 /* Pods_Safe2HomeIOS.framework */; };
 		F11AC66C17BB719B39E8E4AA /* Pods_Safe2HomeIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -64,6 +65,7 @@
 		572578ED2193DA9C0095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		572578F32193E37C0095E5A4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		7CD9F756A189AEA32BDDE8D1 /* Pods-Safe2HomeIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOSUITests/Pods-Safe2HomeIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F54332F68EE6336869D7B4E /* Pods-Safe2HomeIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS.release.xcconfig"; sourceTree = "<group>"; };
 		A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe2HomeIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,6 +161,7 @@
 				1EDD5E80218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld */,
 				1E3155FC21914C3E003BBB80 /* Location.swift */,
 				1E3155FE21915699003BBB80 /* HomeMapView.swift */,
+				572578F32193E37C0095E5A4 /* YouTubeViewController.swift */,
 			);
 			path = Safe2HomeIOS;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
 				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
 				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
 				1E3155FD21914C3E003BBB80 /* Location.swift in Sources */,
