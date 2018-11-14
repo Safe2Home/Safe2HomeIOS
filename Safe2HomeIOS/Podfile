@@ -9,13 +9,14 @@ target 'Safe2HomeIOS' do
 
 pod 'Firebase/Core'
 pod 'FirebaseAuth'
+pod 'FirebaseDatabase'
 pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'MBProgressHUD'
 pod 'SDWebImage'
-pod 'FirebaseDatabase'
 
-pod "youtube-ios-player-helper", "~> 0.1.4"
+
+
 
   target 'Safe2HomeIOSTests' do
     inherit! :search_paths

@@ -82,7 +82,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         //YOUR CODE HERE
         if Auth.auth().currentUser != nil {
             //performSegue(withIdentifier:segueLogInToSignUp, sender: self)
-            self.performSegue(withIdentifier: "segueLogInToMainPage", sender: self)
+            self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
         }
         
     }

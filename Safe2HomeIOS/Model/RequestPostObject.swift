@@ -10,41 +10,32 @@ import Foundation
 import UIKit
 
 class Post {
-    
-    /// Boolean indicating whether or not the post has been read
-    var read: Bool = false
-    
     /// Username of the poster
     let username: String
-    
-    /// The thread the the post was added to
-    let thread: String
     
     /// The date that the snap was posted
     let date: Date
     
-    /// The image path of the post
-    let postImagePath: String
-    
     /// The ID of the post, generated automatically on Firebase
-    let postId: String
-    
-    
+//    let postId: String
+    let comment: String
+
     /// Designated initializer for posts
     ///
     /// - Parameters:
     ///   - username: The name of the user making the post
     ///   - postImage: The image that will show up in the post
     ///   - thread: The thread that the image should be posted to
-    init(id: String, username: String, postImagePath: String, thread: String, dateString: String, read: Bool) {
-        self.postImagePath = postImagePath
+    init(username: String, dateString: String, comments: String) {
+
         self.username = username
-        self.thread = thread
+
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
         self.date = dateFormatter.date(from: dateString)!
-        self.read = read
-        self.postId = id
+        //no use of ids for now??
+//        self.postId = id
+        self.comment = comments
     }
     
     func getTimeElapsedString() -> String {
@@ -63,7 +54,7 @@ class Post {
         } else {
             return "\(minutes / 1440) days ago"
         }
-        
+
     }
     
 }

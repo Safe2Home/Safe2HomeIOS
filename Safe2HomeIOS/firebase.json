@@ -1,0 +1,13 @@
+{
+  "hosting": {
+    "public": "desktop/SafeHomeIOS",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

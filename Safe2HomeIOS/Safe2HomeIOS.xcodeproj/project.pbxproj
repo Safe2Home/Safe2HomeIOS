@@ -22,6 +22,15 @@
 		572578F02193DDC40095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */; };
 		572578F22193DE8D0095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */; };
 		572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572578F32193E37C0095E5A4 /* YouTubeViewController.swift */; };
+		57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */; };
+		57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC432197ACFD003E3961 /* RequestPostAction.swift */; };
+		57EDEC472197E8F1003E3961 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */; };
+		57EDEC492197E9FC003E3961 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC482197E9FC003E3961 /* PostsTableViewController.swift */; };
+		57EDEC4B2197EBD8003E3961 /* RequestPostObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC4A2197EBD8003E3961 /* RequestPostObject.swift */; };
+		57EDEC4D2197F522003E3961 /* CurrentUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC4C2197F522003E3961 /* CurrentUser.swift */; };
+		57EDEC502197F593003E3961 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC4F2197F593003E3961 /* Strings.swift */; };
+		57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC522198B6E6003E3961 /* LogInViewController.swift */; };
+		57EDEC552198B6E6003E3961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC532198B6E6003E3961 /* SignUpViewController.swift */; };
 		8E6B0E9114088F12124B6403 /* Pods_Safe2HomeIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58566462903BAF7DCDD32B0 /* Pods_Safe2HomeIOS.framework */; };
 		F11AC66C17BB719B39E8E4AA /* Pods_Safe2HomeIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -66,6 +75,15 @@
 		572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578F32193E37C0095E5A4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestPost.swift; sourceTree = "<group>"; };
+		57EDEC432197ACFD003E3961 /* RequestPostAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPostAction.swift; sourceTree = "<group>"; };
+		57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		57EDEC482197E9FC003E3961 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		57EDEC4A2197EBD8003E3961 /* RequestPostObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPostObject.swift; sourceTree = "<group>"; };
+		57EDEC4C2197F522003E3961 /* CurrentUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentUser.swift; sourceTree = "<group>"; };
+		57EDEC4F2197F593003E3961 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		57EDEC522198B6E6003E3961 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		57EDEC532198B6E6003E3961 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7CD9F756A189AEA32BDDE8D1 /* Pods-Safe2HomeIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOSUITests/Pods-Safe2HomeIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F54332F68EE6336869D7B4E /* Pods-Safe2HomeIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS.release.xcconfig"; sourceTree = "<group>"; };
 		A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe2HomeIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +147,10 @@
 		1EDD5E6D218B861A0035B977 = {
 			isa = PBXGroup;
 			children = (
+				57EDEC512198B6CE003E3961 /* Authentication */,
+				57EDEC4E2197F587003E3961 /* Constant */,
+				57EDEC452197E8E5003E3961 /* Posts */,
+				57EDEC422197ACEE003E3961 /* Model */,
 				1EDD5E78218B861A0035B977 /* Safe2HomeIOS */,
 				1EDD5E90218B861A0035B977 /* Safe2HomeIOSTests */,
 				1EDD5E9B218B861A0035B977 /* Safe2HomeIOSUITests */,
@@ -152,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				1EDD5E79218B861A0035B977 /* AppDelegate.swift */,
+				57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */,
 				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				1EDD5E7D218B861A0035B977 /* Main.storyboard */,
 				1EDD5E83218B861A0035B977 /* Assets.xcassets */,
@@ -184,6 +207,42 @@
 				1EDD5E9E218B861A0035B977 /* Info.plist */,
 			);
 			path = Safe2HomeIOSUITests;
+			sourceTree = "<group>";
+		};
+		57EDEC422197ACEE003E3961 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				57EDEC432197ACFD003E3961 /* RequestPostAction.swift */,
+				57EDEC4A2197EBD8003E3961 /* RequestPostObject.swift */,
+				57EDEC4C2197F522003E3961 /* CurrentUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		57EDEC452197E8E5003E3961 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */,
+				57EDEC482197E9FC003E3961 /* PostsTableViewController.swift */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		57EDEC4E2197F587003E3961 /* Constant */ = {
+			isa = PBXGroup;
+			children = (
+				57EDEC4F2197F593003E3961 /* Strings.swift */,
+			);
+			path = Constant;
+			sourceTree = "<group>";
+		};
+		57EDEC512198B6CE003E3961 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				57EDEC522198B6E6003E3961 /* LogInViewController.swift */,
+				57EDEC532198B6E6003E3961 /* SignUpViewController.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -351,15 +410,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -418,11 +487,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
+				57EDEC4B2197EBD8003E3961 /* RequestPostObject.swift in Sources */,
+				57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */,
 				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
 				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
 				1E3155FD21914C3E003BBB80 /* Location.swift in Sources */,
 				1EDD5E82218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld in Sources */,
+				57EDEC502197F593003E3961 /* Strings.swift in Sources */,
+				57EDEC472197E8F1003E3961 /* PostsTableViewCell.swift in Sources */,
+				57EDEC552198B6E6003E3961 /* SignUpViewController.swift in Sources */,
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
+				57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */,
+				57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */,
+				57EDEC4D2197F522003E3961 /* CurrentUser.swift in Sources */,
+				57EDEC492197E9FC003E3961 /* PostsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

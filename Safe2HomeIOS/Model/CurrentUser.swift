@@ -62,34 +62,12 @@ class CurrentUser {
      This should be fairly simple - just create a new child by auto ID under the readPosts node and set its value to the postID (string).
      Remember to be very careful about following the structure of the User node before writing any data!
      */
-    func addNewReadPost(postID: String) {
-        // YOUR CODE HERE
-        
-        let userID = Auth.auth().currentUser?.uid
-        
-        
-        readPostIDs?.append(postID)
-        
-        dbRef.child("Users").child(id!).child(firReadPostsNode).childByAutoId().setValue(userID)
-        
-        
-        
-//        print("postID: \(postID) added to readPosts of userID: \(id!).")
-//        dbRef.child(firUsersNode).child(id!).child(firReadPostsNode).childByAutoId().setValue(postID)
-//        
+//    func addNewReadPost(postID: String) {
+//        // YOUR CODE HERE
+//        let userID = Auth.auth().currentUser?.uid
+//        readPostIDs?.append(postID)
 //
-//        dbRef.child("Users/\(user.uid)/username").setValue(username)
-//
-//
-//        let dict: [String: Any] = ["email": email, "preferences": preferences]
-//
-//
-//        dbRef.child("Users/\(user.uid)").setValue(dict)
-//
-//
-        
-        
-        
-    }
+////        dbRef.child("Users").child(id!).child(firReadPostsNode).childByAutoId().setValue(userID)
+//    }
     
 }

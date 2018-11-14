@@ -9,17 +9,16 @@
 import UIKit
 
 class PostsTableViewCell: UITableViewCell {
-    
-    /// Displays the name of the user who posted the thread
-    @IBOutlet weak var usernameLabel: UILabel!
 
-    /// Image to indicate whether or not the image has been read
-    @IBOutlet weak var readImageView: UIImageView!
+// this is a static note and will not change
+    @IBOutlet weak var MatcherLabel: UILabel!
     
-    /// Displays the time elapsed since the user posted the thread
-    @IBOutlet weak var timeElapsedLabel: UILabel!
+    @IBOutlet weak var MatcherName: UILabel!
     
-    override func awakeFromNib() {
+
+    @IBOutlet weak var MatcherComment: UILabel!
+    
+        override func awakeFromNib() {
         super.awakeFromNib()
     }
 

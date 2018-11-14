@@ -17,11 +17,31 @@ let segueSignUpToMainPage = "signUpToMainPage"
 let segueLogInToSignUp = "logInToSignUp"
 
 // Firebase database strings
-let firUsersNode = "Users"
-let firReadPostsNode = "readPosts"
+//Authentification
+let firUserSID = "SID"
+let firUserEmail = "Email"
+let firUserPassword = "Password"
+//post info
 let firPostsNode = "Posts"
-let firUsernameNode = "username"
-let firThreadNode = "thread"
-let firDateNode = "date"
-let firImagePathNode = "imagePath"
-let firStorageImagesPath = "Images"
+let firUsersDisNameNode = "PosterDislayedName"
+let firUserGenderNode = "Gender"
+let firUserMajorNode = "Major"
+let firUserDesLatNode = "DesLatitude"
+let firUserDesLonNode = "DesLongitude"
+let firUserCurrLatNode = "CurrLatitude"
+let firUserCurrLonNode = "CurrLongitude"
+let firPostTimeNode = "PostTime"
+let firCommentNode = "Comment"
+//match info
+let firMatchNode = "Posts"
+
+
+
+//
+//
+//let firReadPostsNode = "readPosts"
+//let firUsernameNode = "username"
+//let firThreadNode = "thread"
+//let firDateNode = "date"
+//let firImagePathNode = "imagePath"
+//let firStorageImagesPath = "Images"

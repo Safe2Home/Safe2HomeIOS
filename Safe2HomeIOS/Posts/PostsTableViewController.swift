@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseStorage
 import MBProgressHUD
+import FirebaseAuth
 
 class PostsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -20,14 +21,43 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     // Dictionary that maps IDs of images to the actual UIImage data
     var loadedImagesById: [String:UIImage] = [:]
-    
+    // below is the post array
+
     
     let currentUser = CurrentUser()
+    var posts_array: [Post] = []
+//    var mactched_user = Post()
     
     /// Table view holding all posts from each thread
-    @IBOutlet weak var postTableView: UITableView!
+    
+    
+    @IBAction func LogOut(_ sender: Any) {
+        try! Auth.auth().signOut()
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let welcomeViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "welcome")
+        self.present(welcomeViewController, animated: true, completion: nil)
+    }
+    
+    @IBOutlet weak var RequestTableView: UITableView!
+    
+    //actually don't know if the textfield and and pressbutton should go here??
+
+    @IBOutlet weak var CommentTextField: UITextField!
+    
+    @IBAction func RequestPostButton(_ sender: UIButton) {
+//        var _:String = CommentTextField.text ?? ""
+//        addPost(username: (Auth.auth().currentUser?.displayName)!, comment: CommentTextField.text!)
+        //?? fill in the blank of current user
+        //?? observe 
+        match(currentUser: currentUser)
+        RequestTableView.reloadData()
+    }
+
+//    var comments         : [[String:Any]]!
+    
     
     /// Button that displays the image of the post selected by the user
+    //commented out because I don't know what it is doing??
     var postImageViewButton: UIButton = {
         var button = UIButton(frame: Constants.postPhotoSize)
         button.backgroundColor = Constants.postBackgroundColor
@@ -36,53 +66,27 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         return button
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        postTableView.delegate = self
-        postTableView.dataSource = self
+        RequestTableView.delegate = self
+        RequestTableView.dataSource = self
         
         // add the button that displays the selected post's image to this view
         view.addSubview(postImageViewButton)
-        
-        // By adding a target here, every time the button is pressed, hidePostImage will be called 
-        // (this is the programmatic way of adding an IBAction to a button)
-        postImageViewButton.addTarget(self, action: #selector(self.hidePostImage(sender:)), for: UIControlEvents.touchUpInside)
-        
-//        gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(refreshEvery15Secs), userInfo: nil, repeats: true)
-        
-    }
-    
-    
+        getPosts(comment: "secret") { (posts) in
+            if let posts = posts {
+                self.posts_array = posts
+            }
+        }
 
-//    var gameTimer: NSTimer!
-//    var refresher: UIRefreshControl!
-//
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        yourButton.addTarget(self, action: "refresh:", forControlEvents: .TouchUpInside)
-//        refresher = UIRefreshControl()
-//        refresher.addTarget(self, action: "refresh:", forControlEvents: .ValueChanged)
-//
-//        timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector:"refreshEvery15Secs", userInfo: nil, repeats: true)
-//    }
-    
-//    func refreshEvery15Secs(){
-//
-//    }
-    
-//    func refresh(sender: AnyObject){
-//
-//        refreshEvery15Secs() // calls when ever button is pressed
-//    }
-    
-    
-    
+    }
+
     // Remember that this method will be called everytime this view appears.
     override func viewWillAppear(_ animated: Bool) {
         // Reload the tablebview.
-        postTableView.reloadData()
+        RequestTableView.reloadData()
         // Update the data from Firebase
         updateData()
     }
@@ -100,101 +104,66 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
      
      */
     func updateData() {
-        getPosts(user: currentUser) { (posts) in
+        getPosts(comment: "secret") { (posts) in
             if let posts = posts {
-                clearThreads()
-                for post in posts {
-                    addPostToThread(post: post)
-                    getDataFromPath(path: post.postImagePath, completion: { (data) in
-                        if let data = data {
-                            if let image = UIImage(data: data) {
-                                self.loadedImagesById[post.postId] = image
-                            }
-                        }
-                    })
-                }
-                self.postTableView.reloadData()
+                self.RequestTableView.reloadData()
+                
             }
         }
     }
 
     
-    // MARK: Custom methods (relating to UI)
-    @objc func hidePostImage(sender: UIButton) {
-        sender.isHidden = true
-        navigationController?.navigationBar.isHidden = false
-        tabBarController?.tabBar.isHidden = false
-    }
-    
-    // TODO:
-    // Uncomment all the commented lines in this function.
-    // This is where we are actually calling some methods to fetch the image
-    // from database and presenting it to the user.
-    func presentPostImage(forPost post: Post) {
-        if let image = loadedImagesById[post.postId] {
-            postImageViewButton.isHidden = false
-            postImageViewButton.setImage(image, for: .normal)
-            navigationController?.navigationBar.isHidden = true
-            tabBarController?.tabBar.isHidden = true
-        } else {
-            let hud = MBProgressHUD.showAdded(to: view, animated: true)
-            getDataFromPath(path: post.postImagePath, completion: { (data) in
-                if let data = data {
-                    let image = UIImage(data: data)
-                    self.loadedImagesById[post.postId] = image
-                    MBProgressHUD.hide(for: self.view, animated: true)
-                    self.postImageViewButton.isHidden = false
-                    self.postImageViewButton.setImage(image, for: .normal)
-                    // hide the navigation and tab bar for presentation
-                    self.navigationController?.navigationBar.isHidden = true
-                    self.tabBarController?.tabBar.isHidden = true
-                }
-            })
-        }
-    }
-    
-    // MARK: Table view delegate and datasource methods
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return threadNames.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return threadNames[section]
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as! PostsTableViewCell
-        if let post = getPostFromIndexPath(indexPath: indexPath) {
-            if post.read {
-                cell.readImageView.image = UIImage(named: "read")
+        let pcell = RequestTableView.dequeueReusableCell(withIdentifier: "RequestPostCell", for: indexPath) as! PostsTableViewCell
+        // can't find comment
+        //pcell.commentmessage.text = comments[indexPath.row]["message"] as! String
+        
+//        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PostsTableViewController.runTimedCode), userInfo: nil, repeats: true)
+        getPosts(comment: "secret") { (posts) in
+            if let posts = posts {
+                print(1)
+                pcell.MatcherName.text = posts[0].username
+                pcell.MatcherComment.text = posts[0].comment
+                self.RequestTableView.reloadData()
             }
-            else {
-                cell.readImageView.image = UIImage(named: "unread")
-            }
-            cell.usernameLabel.text = post.username
-            cell.timeElapsedLabel.text = post.getTimeElapsedString()
         }
-        return cell
+        return pcell
+        
+    }
+    
+    
+//    @objc func runTimedCode(){
+//        self.tableView.reloadData()
+//    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let threadName = threadNames[section]
-        return threads[threadName]!.count
+        // not sure what to display yet??
+        return 1
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let post = getPostFromIndexPath(indexPath: indexPath), !post.read {
-            presentPostImage(forPost: post)
-            post.read = true
-            
-            // Adding the selected post as one of the current user's read posts
-            currentUser.addNewReadPost(postID: post.postId)
-            
-            // Reloading the cell that the user tapped so the unread/read image updates
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    }
+    
+    
+    func match(currentUser: CurrentUser) -> Void {
+        // first check if there are some posts
+        if posts_array.count != 0 {
+            for potential in posts_array {
+                // if match, the algorithm will be more complicated later
+                if (potential.username == "debbie1") {
+                    //??addMatch(client1: curr, client2: potential)
+                    //?? delete_from_request(curr)
+                }
+                else {
+                    //addpost(current post)
+                }
+            }
         }
-     
     }
     
 }
