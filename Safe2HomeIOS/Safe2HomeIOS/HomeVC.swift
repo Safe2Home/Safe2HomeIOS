@@ -64,7 +64,7 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
             //prompt notification: see next slides
             let alertController = UIAlertController(
                 title: "Background Location Access Disabled",
-                message: "In order to ____, please open Settings and set location access for this app to 'Always'.", preferredStyle: .alert)
+                message: "In order to see your location, please open Settings and set location access for this app to 'Always'.", preferredStyle: .alert)
             let openAction = UIAlertAction(title: "My Alert",
                 style: .default, handler: { _ in
                     NSLog("The \"OK\" alert occurred.")
