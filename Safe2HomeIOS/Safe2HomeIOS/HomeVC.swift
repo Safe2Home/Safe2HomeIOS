@@ -15,6 +15,11 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     let manager: CLLocationManager = global_manager
     var current_location: CLLocation?
     let regionRadius: CLLocationDistance = 1000
+    var selected_annotation: MKAnnotation?
+    
+    var destPlacemark: MKPlacemark?
+    var sourcePlacemark: MKPlacemark?
+    
     @IBOutlet weak var map: HomeMapView!
     
 
@@ -29,6 +34,41 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     @IBOutlet weak var searchRoute: UIButton!
     
 
+    @IBAction func Navigate(_ sender: UIButton) {
+        print("BBBB")
+        guard let start = sourcePlacemark else{
+            print("No start place")
+            return
+        }
+        guard let dest = destPlacemark else{
+            print("No dest place")
+            return
+            
+        }
+        let sourceItem = MKMapItem(placemark: start)
+        let destItem = MKMapItem(placemark: dest)
+        let directionRequest = MKDirections.Request()
+        directionRequest.source = sourceItem
+        directionRequest.destination = destItem
+        directionRequest.transportType = MKDirectionsTransportType.walking
+        let directions = MKDirections(request: directionRequest)
+        directions.calculate(completionHandler: { response, error in
+            guard let response = response else{
+                if let error = error{
+                    print("Unable to handle request")
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            let route = response.routes[0]
+            print(route)
+            self.map.addOverlay(route.polyline, level: .aboveRoads)
+            let rekt = route.polyline.boundingMapRect
+            self.map.setRegion(MKCoordinateRegion(rekt), animated: true)
+        })
+    
+    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,12 +128,28 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         map.mapType = MKMapType(rawValue: 0)!
         map.userTrackingMode = MKUserTrackingMode(rawValue: 2)!
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeVC.LocationTapped(_:)))
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.numberOfTouchesRequired = 1
+        map.addGestureRecognizer(tapGesture)
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 5.0
+        return renderer
+    }
+    
+    
+    
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         current_location = locations.last
         if let location = current_location{
             centerMapOnLocation(location: location)
+            self.sourcePlacemark = MKPlacemark(coordinate: location.coordinate)
         }
     }
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -110,6 +166,21 @@ class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
         
     }
 
+    @objc func LocationTapped(_ sender: UITapGestureRecognizer){
+        print("aaaa")
+        let pt:CGPoint = sender.location(in: map)
+        let location = map.convert(pt, toCoordinateFrom: map)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        if let desel = self.selected_annotation{
+            map.removeAnnotation(desel)
+        }
+        map.addAnnotation(annotation)
+        self.selected_annotation = annotation
+        self.destPlacemark = MKPlacemark(coordinate: location)
+        
+    }
+    
     
 
 

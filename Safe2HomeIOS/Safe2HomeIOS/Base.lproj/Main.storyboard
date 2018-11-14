@@ -260,6 +260,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OMl-PP-be3">
                                         <rect key="frame" x="141.5" y="101" width="92" height="30"/>
                                         <state key="normal" title="Search Route"/>
+                                        <connections>
+                                            <action selector="Navigate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Dr-Wz-ZaQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -529,10 +532,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="car" width="50" height="50"/>
-        <image name="contact" width="50" height="50"/>
-        <image name="home" width="50" height="50"/>
-        <image name="play" width="50" height="50"/>
+        <image name="car" width="37.5" height="37.5"/>
+        <image name="contact" width="37.5" height="37.5"/>
+        <image name="home" width="37.5" height="37.5"/>
+        <image name="play" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="asP-bq-V44"/>
