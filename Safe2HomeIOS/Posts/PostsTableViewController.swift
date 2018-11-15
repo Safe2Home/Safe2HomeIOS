@@ -14,10 +14,6 @@ import FirebaseAuth
 
 class PostsTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    enum Constants {
-        static let postBackgroundColor = UIColor.black
-        static let postPhotoSize = UIScreen.main.bounds
-    }
     
     // Dictionary that maps IDs of images to the actual UIImage data
     var loadedImagesById: [String:UIImage] = [:]
@@ -25,6 +21,9 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     
     let currentUser = CurrentUser()
+
+    var currentPost = Post(username: "dummyname", dateString: "dummystring", gender: "dummygender", major: "dummymajor")
+    
     var posts_array: [Post] = []
 //    var mactched_user = Post()
     
@@ -44,27 +43,29 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var CommentTextField: UITextField!
     
-    @IBAction func RequestPostButton(_ sender: UIButton) {
-//        var _:String = CommentTextField.text ?? ""
-//        addPost(username: (Auth.auth().currentUser?.displayName)!, comment: CommentTextField.text!)
-        //?? fill in the blank of current user
-        //?? observe 
-        match(currentUser: currentUser)
-        RequestTableView.reloadData()
-    }
+//    @IBAction func RequestPostButton(_ sender: UIButton) {
+////        var _:String = CommentTextField.text ?? ""
+////        addPost(username: (Auth.auth().currentUser?.displayName)!, comment: CommentTextField.text!)
+//        //?? fill in the blank of current user
+//        //?? observe
+//
+//        //get date again
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+//       let dateString = dateFormatter.string(from: Date())
+//
+//        print(4)
+//        currentPost = Post(username: currentUser.username, dateString: dateString, gender: currentUser.gender, major: currentUser.major)
+//        print(5)
+//        match(currentPost: currentPost)
+////        RequestTableView.reloadData()
+//        //addPost(client: currentPost)
+//        print(6)
+//
+//    }
 
 //    var comments         : [[String:Any]]!
     
-    
-    /// Button that displays the image of the post selected by the user
-    //commented out because I don't know what it is doing??
-    var postImageViewButton: UIButton = {
-        var button = UIButton(frame: Constants.postPhotoSize)
-        button.backgroundColor = Constants.postBackgroundColor
-        // since we only want the button to appear when the user taps a cell, hide the button until a cell is tapped
-        button.isHidden = true
-        return button
-    }()
     
 
     override func viewDidLoad() {
@@ -74,12 +75,14 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         RequestTableView.dataSource = self
         
         // add the button that displays the selected post's image to this view
-        view.addSubview(postImageViewButton)
-        getPosts(comment: "secret") { (posts) in
+//        view.addSubview(postImageViewButton)
+        getPosts() { (posts) in
             if let posts = posts {
                 self.posts_array = posts
             }
         }
+        
+        
 
     }
 
@@ -104,7 +107,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
      
      */
     func updateData() {
-        getPosts(comment: "secret") { (posts) in
+        getPosts() { (posts) in
             if let posts = posts {
                 self.RequestTableView.reloadData()
                 
@@ -120,16 +123,14 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         //pcell.commentmessage.text = comments[indexPath.row]["message"] as! String
         
 //        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PostsTableViewController.runTimedCode), userInfo: nil, repeats: true)
-        getPosts(comment: "secret") { (posts) in
-            if let posts = posts {
-                print(1)
-                pcell.MatcherName.text = posts[0].username
-                pcell.MatcherComment.text = posts[0].comment
+        getPosts() { (matches) in
+            if let matches = matches {
+                print(2)
+                //pcell.MatcherName.text = posts[0].username
                 self.RequestTableView.reloadData()
             }
         }
         return pcell
-        
     }
     
     
@@ -150,20 +151,29 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //    }
     
     
-    func match(currentUser: CurrentUser) -> Void {
+    func match(currentPost: Post, posts_array:[Post] ) -> Void {
         // first check if there are some posts
         if posts_array.count != 0 {
+            print("count:")
+            print(posts_array.count)
             for potential in posts_array {
                 // if match, the algorithm will be more complicated later
-                if (potential.username == "debbie1") {
-                    //??addMatch(client1: curr, client2: potential)
-                    //?? delete_from_request(curr)
+                if (potential.username == "Debbie1") {
+                    addMatch(client1: currentPost, client2: potential)
+                    print("+++++++----------------------------------------------")
+                    print(currentPost.username)
+                
+                    deletePost(username: currentPost.username)
+                
+                    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++=")
+                    return
                 }
-                else {
-                    //addpost(current post)
-                }
+                print(8)
             }
         }
+        print(7)
+        addPost(client: currentPost)
+        print("post added")
     }
     
 }

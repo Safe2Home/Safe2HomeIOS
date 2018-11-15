@@ -14,14 +14,38 @@ import FirebaseStorage
 
 func addPost(client: Post) {
     let dbRef = Database.database().reference()
-    dbRef.child(firPostsNode).childByAutoId().setValue(client)
+
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+    let dateString = dateFormatter.string(from: Date())
+    
+    let postDict: [String:AnyObject] = ["username": client.username as AnyObject,
+                                        "date": dateString as AnyObject,
+                                        "major": client.major as AnyObject,
+                                        "gender": client.gender as AnyObject]
+    
+    print("inside addPost")
+    print("postDict")
+    dbRef.child(firPostsNode).child(client.username).setValue(postDict)
+
 }
+
 
 func addMatch(client1: Post, client2: Post) {
     let dbRef = Database.database().reference()
-    dbRef.child(firMatchNode).child(client1.username).setValue(client2)
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+    let dateString = dateFormatter.string(from: Date())
+    
+    let postDict: [String:AnyObject] = ["username": client2.username as AnyObject,
+                                        "date": dateString as AnyObject,
+                                        "major": client2.major as AnyObject,
+                                        "gender": client2.gender as AnyObject]
+
+    dbRef.child(firMatchNode).child(client1.username).setValue(postDict)
 }
-func getPosts(comment: String, completion: @escaping ([Post]?) -> Void) {
+
+func getPosts(completion: @escaping ([Post]?) -> Void) {
     let dbRef = Database.database().reference()
     var postArray: [Post] = []
     dbRef.child("Posts").observeSingleEvent(of: .value, with: { snapshot -> Void in
@@ -31,16 +55,71 @@ func getPosts(comment: String, completion: @escaping ([Post]?) -> Void) {
                 for postKey in posts.keys {
                     let postObject = posts[postKey]
                     var objectUserName = ""
-                    var objectComment = ""
                     var objectDate = ""
+                    var objectGender = ""
+                    var objectMajor = ""
                     
                     objectUserName = postObject!.value(forKey: "username") as! String
-                    objectComment = postObject!.value(forKey: "comment") as! String
                     objectDate = postObject!.value(forKey: "date") as! String
+
+                    objectGender = postObject!.value(forKey: "gender") as! String
+
+                    objectMajor = postObject!.value(forKey: "major") as! String
+                    //??maybe figure out a way to build profile when waiting for Andy
+                    print("before pp    ")
+                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor)
+                    print(pp)
+                    //this is sucessful
+                     postArray.append(pp)
+                }
+                completion(postArray)
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
+        }
+    })
+}
+func deletePost(username: String) {
+    let dbRef = Database.database().reference()
+    dbRef.child("Posts").child(username).setValue(nil)
+}
+func deleteMatch(username: String) {
+    let dbRef = Database.database().reference()
+    print("----------------------------------------------")
+    dbRef.child("Match").child(username).setValue(nil)
+}
+func getMatches(client1Name: String, completion: @escaping ([Post]?) -> Void) {
+    // this should return a Post array, containing one post obejct, which is client 2
+    let dbRef = Database.database().reference()
+    var postArray: [Post] = []
+    dbRef.child("Match").observeSingleEvent(of: .value, with: { snapshot -> Void in
+        if snapshot.exists() {
+            if let posts = snapshot.value as? [String:AnyObject] {
+                
+                for postKey in posts.keys {
+                    let postObject = posts[postKey]
+                    var objectUserName = ""
+                    var objectDate = ""
+                    var objectGender = ""
+                    var objectMajor = ""
                     
-                    let pp = Post(username: objectUserName, dateString: objectDate, comments: objectComment)
-                    if pp.comment == comment {
+                    objectUserName = postObject!.value(forKey: "username") as! String
+                    objectDate = postObject!.value(forKey: "date") as! String
+                    objectGender = postObject!.value(forKey: "gender") as! String
+                    objectMajor = postObject!.value(forKey: "major") as! String
+                    //??maybe figure out a way to build profile when waiting for Andy
+                    
+                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor)
+                    // Help!! I don't know how to get the post on branch
+                    if (client1Name == pp.username) {
                         postArray.append(pp)
+                        print("client2:")
+                        print(pp)
+                        print("client1")
+                        print(client1Name)
+                        deleteMatch(username: client1Name)
                     }
                 }
                 completion(postArray)
@@ -136,39 +215,38 @@ func addPost_scratch(username: String, comment: String) {
  
  Remember to use constants defined in Strings.swift to refer to the correct path!
  */
-func getPosts_scratch(comment: String, completion: @escaping ([Post]?) -> Void) {
-    let dbRef = Database.database().reference()
-    var postArray: [Post] = []
-    dbRef.child("Posts").observeSingleEvent(of: .value, with: { snapshot -> Void in
-        if snapshot.exists() {
-            if let posts = snapshot.value as? [String:AnyObject] {
-                
-                    for postKey in posts.keys {
-                        // COMPLETE THE CODE HERE
-                        let postObject = posts[postKey]
-                        var objectUserName = ""
-                        var objectComment = ""
-                        var objectDate = ""
-                        
-                        objectUserName = postObject!.value(forKey: "username") as! String
-                        objectComment = postObject!.value(forKey: "comment") as! String
-                        objectDate = postObject!.value(forKey: "date") as! String
-                        
-                        let pp = Post(username: objectUserName, dateString: objectDate, comments: objectComment)
-                        if pp.comment == comment {
-                            postArray.append(pp)
-                        }
-                    }
-                completion(postArray)
-            } else {
-                completion(nil)
-            }
-        } else {
-            completion(nil)
-        }
-    })
-    
-}
-
+//func getPosts_scratch(comment: String, completion: @escaping ([Post]?) -> Void) {
+//    let dbRef = Database.database().reference()
+//    var postArray: [Post] = []
+//    dbRef.child("Posts").observeSingleEvent(of: .value, with: { snapshot -> Void in
+//        if snapshot.exists() {
+//            if let posts = snapshot.value as? [String:AnyObject] {
+//
+//                    for postKey in posts.keys {
+//                        // COMPLETE THE CODE HERE
+//                        let postObject = posts[postKey]
+//                        var objectUserName = ""
+//                        var objectComment = ""
+//                        var objectDate = ""
+//
+//                        objectUserName = postObject!.value(forKey: "username") as! String
+//                        objectComment = postObject!.value(forKey: "comment") as! String
+//                        objectDate = postObject!.value(forKey: "date") as! String
+//
+//                        let pp = Post(username: objectUserName, dateString: objectDate, comments: objectComment)
+//                        if pp.comment == comment {
+//                            postArray.append(pp)
+//                        }
+//                    }
+//                completion(postArray)
+//            } else {
+//                completion(nil)
+//            }
+//        } else {
+//            completion(nil)
+//        }
+//    })
+//
+//}
 
 

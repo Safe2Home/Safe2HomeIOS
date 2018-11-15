@@ -10,12 +10,18 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 
+
+
+
+
+
 class CurrentUser {
     
     var username: String!
     var id: String!
     var readPostIDs: [String]?
-    
+    var gender: String = "Not Selected"
+    var major: String = "Not Selected"
     /*TODO:
      Uncomment the following lines when you reach the appriopriate section in the
      README. DO NOT UNCOMMENT THE ONES WITHIN THE NEXT TODO:
@@ -27,6 +33,8 @@ class CurrentUser {
         let currentUser = Auth.auth().currentUser
         username = currentUser?.displayName
         id = currentUser?.uid
+//        gender = currentUser?.gender
+//        major = currentUser?.major
     }
 
     /*

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class Post {
     /// Username of the poster
@@ -18,7 +19,9 @@ class Post {
     
     /// The ID of the post, generated automatically on Firebase
 //    let postId: String
-    let comment: String
+    let gender: String
+    
+    let major: String
 
     /// Designated initializer for posts
     ///
@@ -26,16 +29,25 @@ class Post {
     ///   - username: The name of the user making the post
     ///   - postImage: The image that will show up in the post
     ///   - thread: The thread that the image should be posted to
-    init(username: String, dateString: String, comments: String) {
+    init(username: String, dateString: String, gender: String, major: String ) {
 
         self.username = username
-
+        
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+//
+//        self.date = dateFormatter.date(from: dateString)!
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
+        let dateString = dateFormatter.string(from: Date())
         self.date = dateFormatter.date(from: dateString)!
+    
+        
+        
         //no use of ids for now??
 //        self.postId = id
-        self.comment = comments
+        self.gender = gender
+        self.major = major 
     }
     
     func getTimeElapsedString() -> String {
