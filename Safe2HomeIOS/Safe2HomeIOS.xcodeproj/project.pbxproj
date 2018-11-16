@@ -24,6 +24,7 @@
 		572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572578F32193E37C0095E5A4 /* YouTubeViewController.swift */; };
 		57576D92219D34A5002514B1 /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57576D91219D34A5002514B1 /* MatchTableViewCell.swift */; };
 		57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */; };
+		57576D97219F36BA002514B1 /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57576D96219F36BA002514B1 /* ChatLogController.swift */; };
 		57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */; };
 		57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC432197ACFD003E3961 /* RequestPostAction.swift */; };
 		57EDEC472197E8F1003E3961 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */; };
@@ -79,6 +80,7 @@
 		572578F32193E37C0095E5A4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		57576D91219D34A5002514B1 /* MatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
 		57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInViewController.swift; sourceTree = "<group>"; };
+		57576D96219F36BA002514B1 /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestPost.swift; sourceTree = "<group>"; };
 		57EDEC432197ACFD003E3961 /* RequestPostAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPostAction.swift; sourceTree = "<group>"; };
 		57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		1EDD5E6D218B861A0035B977 = {
 			isa = PBXGroup;
 			children = (
+				57576D95219F365E002514B1 /* New Group */,
 				57EDEC512198B6CE003E3961 /* Authentication */,
 				57EDEC4E2197F587003E3961 /* Constant */,
 				57EDEC452197E8E5003E3961 /* Posts */,
@@ -215,6 +218,13 @@
 			path = Safe2HomeIOSUITests;
 			sourceTree = "<group>";
 		};
+		57576D95219F365E002514B1 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		57EDEC422197ACEE003E3961 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +240,7 @@
 			children = (
 				57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */,
 				57EDEC482197E9FC003E3961 /* PostsTableViewController.swift */,
+				57576D96219F36BA002514B1 /* ChatLogController.swift */,
 			);
 			path = Posts;
 			sourceTree = "<group>";
@@ -517,6 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57576D97219F36BA002514B1 /* ChatLogController.swift in Sources */,
 				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
 				57EDEC4B2197EBD8003E3961 /* RequestPostObject.swift in Sources */,
 				57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */,

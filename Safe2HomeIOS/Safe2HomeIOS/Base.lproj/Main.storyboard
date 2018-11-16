@@ -122,12 +122,21 @@
                                     <action selector="LogOut:" destination="55a-3N-UPq" eventType="touchUpInside" id="VW8-O9-DXf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mir-SE-gaR">
+                                <rect key="frame" x="185" y="105" width="33" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Chat"/>
+                                <connections>
+                                    <segue destination="PVz-66-6hk" kind="show" id="5Z3-af-xaW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Bv8-Rh-gUu"/>
                     </view>
                     <navigationItem key="navigationItem" id="RVT-YO-lIj"/>
                     <connections>
+                        <outlet property="Chat" destination="Mir-SE-gaR" id="bOr-q4-gm0"/>
                         <outlet property="CommentTextField" destination="YDn-kC-FO4" id="rtd-TJ-6B9"/>
                         <outlet property="RequestTableView" destination="pv4-TE-aDV" id="3Cx-Tj-xMd"/>
                     </connections>
@@ -170,6 +179,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9cq-zn-UMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-844" y="-127"/>
+        </scene>
+        <!--Chat Log Controller-->
+        <scene sceneID="tIq-rv-Dos">
+            <objects>
+                <collectionViewController id="PVz-66-6hk" customClass="ChatLogController" customModule="Safe2HomeIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MRm-uq-9aF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZF3-s0-nf8">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jYU-wX-3Of">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="PVz-66-6hk" id="qdP-OJ-MvM"/>
+                            <outlet property="delegate" destination="PVz-66-6hk" id="RUl-Wu-9GL"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PVO-Is-jLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="844" y="-1672"/>
         </scene>
         <!--Uber-->
         <scene sceneID="ul9-Sw-JaI">

@@ -29,6 +29,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
     
     /// Table view holding all posts from each thread
     
+    @IBOutlet weak var Chat: UIButton!
     
     @IBAction func LogOut(_ sender: Any) {
         try! Auth.auth().signOut()
@@ -175,5 +176,8 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         addPost(client: currentPost)
         print("post added")
     }
+    
+    
+    
     
 }

@@ -249,6 +249,12 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         self.map.removeOverlays(self.map.overlays)
     }
     
+//    func showChatController() {
+    //        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
+//        navigationController?.pushViewController(ChatLogController, animated: true)
+//    }
+    // error here. this func has to be indside a tableview controller
+    
     
     
     
