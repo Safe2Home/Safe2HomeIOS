@@ -269,6 +269,8 @@
                                         <state key="normal" title="Match"/>
                                         <connections>
                                             <action selector="RequestPostButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5dM-aU-JRG"/>
+                                            <action selector="Navigate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Dr-Wz-ZaQ"/>
+
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="L3H-Rj-zve">
@@ -586,10 +588,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="car" width="50" height="50"/>
-        <image name="contact" width="50" height="50"/>
-        <image name="home" width="50" height="50"/>
-        <image name="play" width="50" height="50"/>
+        <image name="car" width="37.5" height="37.5"/>
+        <image name="contact" width="37.5" height="37.5"/>
+        <image name="home" width="37.5" height="37.5"/>
+        <image name="play" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="QzD-gL-pWB"/>

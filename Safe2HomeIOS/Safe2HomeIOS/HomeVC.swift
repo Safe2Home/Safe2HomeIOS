@@ -23,6 +23,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     var destPlacemark: MKPlacemark?
     var sourcePlacemark: MKPlacemark?
     
+
     let currentUser = CurrentUser()
     
     var posts_array: [Post] = []
@@ -30,6 +31,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     var currentPost = Post(username: "dummyname", dateString: "dummystring", gender: "dummygender", major: "dummymajor")
     
     
+
     @IBOutlet weak var map: HomeMapView!
     
     @IBOutlet weak var RequestMatchTableView: UITableView!
@@ -45,9 +47,10 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     
     @IBOutlet weak var searchRoute: UIButton!
     
-    
+
+
     @IBAction func Navigate(_ sender: UIButton) {
-        
+        print("BBBB")
         guard let start = sourcePlacemark else{
             print("No start place")
             return
@@ -74,11 +77,11 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
             }
             let route = response.routes[0]
             print(route)
-            
             self.map.addOverlay(route.polyline, level: .aboveRoads)
             let rekt = route.polyline.boundingMapRect
             self.map.setRegion(MKCoordinateRegion(rekt), animated: true)
         })
+
         
         
     }
@@ -126,6 +129,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
+
     }
     
     override func viewDidLoad() {
@@ -233,6 +237,22 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         map.setRegion(coordinateRegion,animated: true)
         
     }
+
+    @objc func LocationTapped(_ sender: UITapGestureRecognizer){
+        print("aaaa")
+        let pt:CGPoint = sender.location(in: map)
+        let location = map.convert(pt, toCoordinateFrom: map)
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = location
+        if let desel = self.selected_annotation{
+            map.removeAnnotation(desel)
+        }
+        map.addAnnotation(annotation)
+        self.selected_annotation = annotation
+        self.destPlacemark = MKPlacemark(coordinate: location)
+        
+    }
+
     
     @objc func LocationTapped(_ sender: UITapGestureRecognizer){
    
