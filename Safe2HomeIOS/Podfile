@@ -8,12 +8,13 @@ target 'Safe2HomeIOS' do
   # Pods for Safe2HomeIOS
 
 pod 'Firebase/Core'
-pod 'FirebaseAuth'
+pod 'Firebase/Auth'
 pod 'FirebaseDatabase'
 pod 'FirebaseStorage'
 pod 'SDWebImage'
 pod 'MBProgressHUD'
 pod 'SDWebImage'
+pod 'GoogleSignIn'
 
 
 

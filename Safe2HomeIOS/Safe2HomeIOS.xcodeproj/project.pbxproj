@@ -23,6 +23,7 @@
 		572578F22193DE8D0095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */; };
 		572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572578F32193E37C0095E5A4 /* YouTubeViewController.swift */; };
 		57576D92219D34A5002514B1 /* MatchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57576D91219D34A5002514B1 /* MatchTableViewCell.swift */; };
+		57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */; };
 		57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */; };
 		57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC432197ACFD003E3961 /* RequestPostAction.swift */; };
 		57EDEC472197E8F1003E3961 /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */; };
@@ -77,6 +78,7 @@
 		572578F12193DE8D0095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578F32193E37C0095E5A4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		57576D91219D34A5002514B1 /* MatchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTableViewCell.swift; sourceTree = "<group>"; };
+		57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInViewController.swift; sourceTree = "<group>"; };
 		57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkRequestPost.swift; sourceTree = "<group>"; };
 		57EDEC432197ACFD003E3961 /* RequestPostAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestPostAction.swift; sourceTree = "<group>"; };
 		57EDEC462197E8F1003E3961 /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				57576D91219D34A5002514B1 /* MatchTableViewCell.swift */,
 				1EDD5E7D218B861A0035B977 /* Main.storyboard */,
+				57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */,
 				1EDD5E83218B861A0035B977 /* Assets.xcassets */,
 				1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */,
 				1EDD5E88218B861A0035B977 /* Info.plist */,
@@ -260,6 +263,7 @@
 				1EDD5E73218B861A0035B977 /* Frameworks */,
 				1EDD5E74218B861A0035B977 /* Resources */,
 				60BDDC5F3503272A55D07EFD /* [CP] Embed Pods Frameworks */,
+				CD5B52DBA61F29C4D6AEDD62 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -413,25 +417,27 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -482,6 +488,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CD5B52DBA61F29C4D6AEDD62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS-resources.sh",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -502,6 +530,7 @@
 				57EDEC552198B6E6003E3961 /* SignUpViewController.swift in Sources */,
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
 				57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */,
+				57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */,
 				57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */,
 				57EDEC4D2197F522003E3961 /* CurrentUser.swift in Sources */,
 				57EDEC492197E9FC003E3961 /* PostsTableViewController.swift in Sources */,

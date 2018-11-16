@@ -113,7 +113,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         //pcell.commentmessage.text = comments[indexPath.row]["message"] as! String
         
         //        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PostsTableViewController.runTimedCode), userInfo: nil, repeats: true)
-        getPosts() { (matches) in
+        getMatches(client1Name: currentUser.username) { (matches) in
 //            client1Name: currentUser.username
             if let matches = matches {
                 print(3)
