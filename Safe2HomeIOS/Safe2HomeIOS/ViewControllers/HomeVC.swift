@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Firebase
 
 
 
@@ -45,7 +46,82 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     
     @IBOutlet weak var searchRoute: UIButton!
     
+    //********************
+    //CHANNEL ZONE
     
+    var current_channel:Channel?
+    private var channelReference: CollectionReference {
+        return Firestore.firestore().collection("channels")
+    }
+    
+    //CHANNEL ZONE
+    //********************
+    
+    //********************
+    //MATCHING SUCESS ZONE
+    //********************
+  @IBOutlet weak var match_success_view: UIView!
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var major: UILabel!
+    @IBOutlet weak var gender: UILabel!
+    @IBOutlet weak var profile_image: UIImageView!
+    @IBOutlet weak var affiliation: UILabel!
+    @IBAction func GoToChat(_ sender: UIButton) {
+        if let channel = current_channel{
+            let vc = ChatVC(user: Auth.auth().currentUser!, channel: channel)
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        else{
+//            let channel = Channel(name: "default")
+//            current_channel = channel
+//            let vc = ChatVC(user: Auth.auth().currentUser!, channel: channel)
+//            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func matchSuccess(post:Post){
+        setView(view: matching_view, hidden: true)
+        setView(view: match_success_view, hidden: false)
+        name.text = post.username
+        major.text = post.major
+        gender.text = post.gender
+        //Make a new channel
+        let ref:DocumentReference = channelReference.document()
+        let myId:String = ref.documentID
+        let channel = Channel(name: "default", id: myId)
+        channelReference.document(myId).setData(channel.representation, completion:{ error in
+            if let e = error {
+                print("Error saving channel: \(e.localizedDescription)")
+            }
+        }
+        )
+        current_channel = channel
+        
+    }
+    
+    
+    //********************
+    //MATCHING SUCESS ZONE
+    //********************
+    
+    //********************
+    //MATCHING BOX ZONE
+    //********************
+    @IBOutlet weak var matching_view: UIView!
+    @IBAction func cancel_matching(_ sender: UIButton) {
+        setView(view: matching_view, hidden: true)
+        deletePost(username: currentUser.username)
+    }
+    
+    func setView(view: UIView, hidden: Bool) {
+        UIView.transition(with: view, duration: 0.5, options: .transitionFlipFromTop, animations: {
+            view.isHidden = hidden
+        })
+    }
+    //********************
+    //MATCHING BOX ZONE
+    //********************
     @IBAction func Navigate(_ sender: UIButton) {
         
         guard let start = sourcePlacemark else{
@@ -100,11 +176,13 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         print(5)
         let postVC = PostsTableViewController()
         
-        postVC.match(currentPost: currentPost, posts_array: posts_array)
+        if let post = postVC.match(currentPost: currentPost, posts_array: posts_array){
+            matchSuccess(post:post)
+        }
         //        RequestTableView.reloadData()
         //addPost(client: currentPost)
         print(6)
-        
+        setView(view: matching_view, hidden: false)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -128,6 +206,27 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         return 1
     }
     
+    //ART
+    func setParameters(){
+        destinationLabel.textAlignment = .center
+        destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)
+        searchRoute.layer.cornerRadius = 4
+        searchRoute.backgroundColor = .blue
+        searchRoute.center.x = self.view.center.x
+        searchRoute.center.y = self.view.center.y
+        matching_view.layer.cornerRadius = 10
+        matching_view.layer.shadowColor = UIColor.black.cgColor
+        matching_view.layer.shadowOffset = CGSize(width: 3, height: 3)
+        matching_view.layer.shadowOpacity = 0.7
+        matching_view.layer.shadowRadius = 4.0
+        match_success_view.layer.cornerRadius = 10
+        match_success_view.layer.shadowColor = UIColor.black.cgColor
+        match_success_view.layer.shadowOffset = CGSize(width: 3, height: 3)
+        match_success_view.layer.shadowOpacity = 0.7
+        match_success_view.layer.shadowRadius = 4.0
+        destinationText.textAlignment = .center
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -140,17 +239,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
                                 alpha: 1)
         
         //destinationLabel.textColor = UIColor.blue
-        
-        destinationLabel.textAlignment = .center
-        destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)
-        
-        searchRoute.layer.cornerRadius = 4
-        searchRoute.backgroundColor = .blue
-        searchRoute.center.x = self.view.center.x
-        searchRoute.center.y = self.view.center.y
-        
-
-        destinationText.textAlignment = .center
+        setParameters()
         
         getPosts() { (posts) in
             print("maybe")
@@ -201,6 +290,9 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         tapGesture.numberOfTouchesRequired = 1
         map.addGestureRecognizer(tapGesture)
         // Do any additional setup after loading the view, typically from a nib.
+        matching_view.isHidden = true
+        match_success_view.isHidden = true
+        
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -217,6 +309,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         current_location = locations.last
         if let location = current_location{
             centerMapOnLocation(location: location)
+            global_location = location
             self.sourcePlacemark = MKPlacemark(coordinate: location.coordinate)
         }
     }

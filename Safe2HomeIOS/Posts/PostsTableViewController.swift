@@ -152,7 +152,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
 //    }
     
     
-    func match(currentPost: Post, posts_array:[Post] ) -> Void {
+    func match(currentPost: Post, posts_array:[Post] ) -> Post? {
         // first check if there are some posts
         if posts_array.count != 0 {
             print("count:")
@@ -167,7 +167,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
                     deletePost(username: currentPost.username)
                 
                     print("++++++++++++++++++++++++++++++++++++++++++++++++++++++=")
-                    return
+                    return potential
                 }
                 print(8)
             }
@@ -175,6 +175,7 @@ class PostsTableViewController: UIViewController, UITableViewDelegate, UITableVi
         print(7)
         addPost(client: currentPost)
         print("post added")
+        return nil
     }
     
     

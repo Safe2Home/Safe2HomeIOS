@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1E3155FD21914C3E003BBB80 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3155FC21914C3E003BBB80 /* Location.swift */; };
 		1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E3155FE21915699003BBB80 /* HomeMapView.swift */; };
+		1E6B33E721A5F183002BDFA9 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B33E621A5F183002BDFA9 /* ChatVC.swift */; };
+		1E6B33E921A5F570002BDFA9 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B33E821A5F570002BDFA9 /* Channel.swift */; };
+		1E6B33EB21A5F57E002BDFA9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B33EA21A5F57D002BDFA9 /* Message.swift */; };
+		1E6B33ED21A5F586002BDFA9 /* DatabaseRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6B33EC21A5F586002BDFA9 /* DatabaseRepresentation.swift */; };
 		1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E79218B861A0035B977 /* AppDelegate.swift */; };
 		1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7B218B861A0035B977 /* HomeVC.swift */; };
 		1EDD5E7F218B861A0035B977 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EDD5E7D218B861A0035B977 /* Main.storyboard */; };
@@ -17,6 +21,8 @@
 		1EDD5E87218B861A0035B977 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */; };
 		1EDD5E92218B861A0035B977 /* Safe2HomeIOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E91218B861A0035B977 /* Safe2HomeIOSTests.swift */; };
 		1EDD5E9D218B861A0035B977 /* Safe2HomeIOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDD5E9C218B861A0035B977 /* Safe2HomeIOSUITests.swift */; };
+		1EE185E521A63332008D3F91 /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE185E421A63331008D3F91 /* MessageComposer.swift */; };
+		1EE185E821A634DB008D3F91 /* TextAndCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EE185E721A634DB008D3F91 /* TextAndCall.swift */; };
 		3F31430364C607F5C25C2313 /* Pods_Safe2HomeIOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 001A9DE7EC5527F53C1FC736 /* Pods_Safe2HomeIOSUITests.framework */; };
 		572578EE2193DA9C0095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578ED2193DA9C0095E5A4 /* GoogleService-Info.plist */; };
 		572578F02193DDC40095E5A4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */; };
@@ -59,6 +65,10 @@
 		001A9DE7EC5527F53C1FC736 /* Pods_Safe2HomeIOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe2HomeIOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E3155FC21914C3E003BBB80 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		1E3155FE21915699003BBB80 /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		1E6B33E621A5F183002BDFA9 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		1E6B33E821A5F570002BDFA9 /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Channel.swift; path = "../../../RWRC/Final-RWRC/RWRC/Models/Channel.swift"; sourceTree = "<group>"; };
+		1E6B33EA21A5F57D002BDFA9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = "../../../RWRC/Final-RWRC/RWRC/Models/Message.swift"; sourceTree = "<group>"; };
+		1E6B33EC21A5F586002BDFA9 /* DatabaseRepresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseRepresentation.swift; path = "../../../RWRC/Final-RWRC/RWRC/Models/DatabaseRepresentation.swift"; sourceTree = "<group>"; };
 		1EDD5E76218B861A0035B977 /* Safe2HomeIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safe2HomeIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDD5E79218B861A0035B977 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EDD5E7B218B861A0035B977 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -73,6 +83,8 @@
 		1EDD5E98218B861A0035B977 /* Safe2HomeIOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Safe2HomeIOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EDD5E9C218B861A0035B977 /* Safe2HomeIOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Safe2HomeIOSUITests.swift; sourceTree = "<group>"; };
 		1EDD5E9E218B861A0035B977 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EE185E421A63331008D3F91 /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MessageComposer.swift; path = ../../../toEric/MessageComposer.swift; sourceTree = "<group>"; };
+		1EE185E721A634DB008D3F91 /* TextAndCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextAndCall.swift; sourceTree = "<group>"; };
 		380467CB4D2741137DD5743A /* Pods-Safe2HomeIOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOSTests/Pods-Safe2HomeIOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		572578ED2193DA9C0095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -153,7 +165,6 @@
 		1EDD5E6D218B861A0035B977 = {
 			isa = PBXGroup;
 			children = (
-				57576D95219F365E002514B1 /* New Group */,
 				57EDEC512198B6CE003E3961 /* Authentication */,
 				57EDEC4E2197F587003E3961 /* Constant */,
 				57EDEC452197E8E5003E3961 /* Posts */,
@@ -180,19 +191,18 @@
 		1EDD5E78218B861A0035B977 /* Safe2HomeIOS */ = {
 			isa = PBXGroup;
 			children = (
+				1EE185E621A634C4008D3F91 /* ViewControllers */,
 				1EDD5E79218B861A0035B977 /* AppDelegate.swift */,
 				57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */,
-				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				57576D91219D34A5002514B1 /* MatchTableViewCell.swift */,
+				1EE185E421A63331008D3F91 /* MessageComposer.swift */,
 				1EDD5E7D218B861A0035B977 /* Main.storyboard */,
-				57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */,
 				1EDD5E83218B861A0035B977 /* Assets.xcassets */,
 				1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */,
 				1EDD5E88218B861A0035B977 /* Info.plist */,
 				572578EF2193DDC40095E5A4 /* GoogleService-Info.plist */,
 				1EDD5E80218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld */,
 				1E3155FC21914C3E003BBB80 /* Location.swift */,
-				1E3155FE21915699003BBB80 /* HomeMapView.swift */,
 				572578F32193E37C0095E5A4 /* YouTubeViewController.swift */,
 			);
 			path = Safe2HomeIOS;
@@ -218,16 +228,24 @@
 			path = Safe2HomeIOSUITests;
 			sourceTree = "<group>";
 		};
-		57576D95219F365E002514B1 /* New Group */ = {
+		1EE185E621A634C4008D3F91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
+				1EE185E721A634DB008D3F91 /* TextAndCall.swift */,
+				1E6B33E621A5F183002BDFA9 /* ChatVC.swift */,
+				1E3155FE21915699003BBB80 /* HomeMapView.swift */,
+				57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */,
 			);
-			path = "New Group";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		57EDEC422197ACEE003E3961 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1E6B33E821A5F570002BDFA9 /* Channel.swift */,
+				1E6B33EA21A5F57D002BDFA9 /* Message.swift */,
+				1E6B33EC21A5F586002BDFA9 /* DatabaseRepresentation.swift */,
 				57EDEC432197ACFD003E3961 /* RequestPostAction.swift */,
 				57EDEC4A2197EBD8003E3961 /* RequestPostObject.swift */,
 				57EDEC4C2197F522003E3961 /* CurrentUser.swift */,
@@ -428,12 +446,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-ProtoRPC/ProtoRPC.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-RxLibrary/RxLibrary.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -441,12 +467,20 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProtoRPC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxLibrary.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -529,9 +563,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				57576D97219F36BA002514B1 /* ChatLogController.swift in Sources */,
+				1E6B33E921A5F570002BDFA9 /* Channel.swift in Sources */,
 				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
+				1E6B33E721A5F183002BDFA9 /* ChatVC.swift in Sources */,
 				57EDEC4B2197EBD8003E3961 /* RequestPostObject.swift in Sources */,
+				1EE185E821A634DB008D3F91 /* TextAndCall.swift in Sources */,
 				57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */,
+				1E6B33EB21A5F57E002BDFA9 /* Message.swift in Sources */,
+				1E6B33ED21A5F586002BDFA9 /* DatabaseRepresentation.swift in Sources */,
 				57576D92219D34A5002514B1 /* MatchTableViewCell.swift in Sources */,
 				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
 				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
@@ -544,6 +583,7 @@
 				57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */,
 				57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */,
 				57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */,
+				1EE185E521A63332008D3F91 /* MessageComposer.swift in Sources */,
 				57EDEC4D2197F522003E3961 /* CurrentUser.swift in Sources */,
 				57EDEC492197E9FC003E3961 /* PostsTableViewController.swift in Sources */,
 			);
@@ -722,7 +762,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QX79Q3586F;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,7 +781,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QX79Q3586F;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

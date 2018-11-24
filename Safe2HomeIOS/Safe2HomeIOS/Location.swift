@@ -10,3 +10,4 @@ import Foundation
 import CoreLocation
 
 let global_manager = CLLocationManager()
+var global_location: CLLocation?
