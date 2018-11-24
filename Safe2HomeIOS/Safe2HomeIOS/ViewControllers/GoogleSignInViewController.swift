@@ -94,9 +94,11 @@ class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GI
         
     }
     
-    @IBAction func SignOutAction(_ sender: UIButton) {
+
+    @IBAction func GIDSignOutAction(_ sender: Any) {
         let dele = AppDelegate()
         dele.firebaseSignOut()
+    
     }
     
     

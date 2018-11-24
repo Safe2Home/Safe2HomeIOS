@@ -11,6 +11,12 @@ import FirebaseAuth
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
+    @IBAction func SignOutAction(_ sender: UIButton) {
+        let dele = AppDelegate()
+        dele.firebaseSignOut()
+    }
+    @IBOutlet weak var SignOutButton: UIButton!
+    
     @IBOutlet weak var nameTextField: UITextField!
     
     @IBOutlet weak var emailTextField: UITextField!
