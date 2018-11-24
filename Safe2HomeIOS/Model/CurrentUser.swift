@@ -17,24 +17,34 @@ import FirebaseAuth
 
 class CurrentUser {
     
-    var username: String!
     var id: String!
-    var readPostIDs: [String]?
-    var gender: String = "Not Selected"
-    var major: String = "Not Selected"
-    /*TODO:
-     Uncomment the following lines when you reach the appriopriate section in the
-     README. DO NOT UNCOMMENT THE ONES WITHIN THE NEXT TODO:
-     */
     
+    /// Username of the User
+    var username: String!
+    
+    
+    /// The ID of the post, generated automatically on Firebase
+    //    let postId: String
+    var gender: String!
+    
+    var major: String!
+    
+    var preferredmajor : String!
+    /// Designated initializer for posts
+    ///
+    /// - Parameters:
+    ///   - username: The name of the user making the post
+    ///   - postImage: The image that will show up in the post
+    ///   - thread: The thread that the image should be posted to
     let dbRef = Database.database().reference()
-
+    
+    
     init() {
         let currentUser = Auth.auth().currentUser
-        username = currentUser?.displayName
         id = currentUser?.uid
-//        gender = currentUser?.gender
-//        major = currentUser?.major
+        username = "John Doe"
+        //        gender = currentUser?.gender
+        //        major = currentUser?.major
     }
 
     /*
@@ -44,23 +54,6 @@ class CurrentUser {
      Note that our database is set up to store a set of ID's under the readPosts node for each user.
      Make a query to Firebase using the 'observeSingleEvent' function (with 'of' parameter set to .value) and retrieve the snapshot that is returned. If the snapshot exists, store its value as a [String:AnyObject] dictionary and iterate through its keys, appending the value corresponding to that key to postArray each time. Finally, call completion(postArray).
      */
-    func getReadPostIDs(completion: @escaping ([String]) -> Void) {
-        var postArray: [String] = []
-        // YOUR CODE HERE
-        
-        let userID = Auth.auth().currentUser?.uid
-        
-        // .value is a path
-        dbRef.child("Users").child(userID!).child("readPosts").observeSingleEvent(of: .value, with: { (snapshot) -> Void in
-            if snapshot.exists() {
-                let value = snapshot.value as? NSDictionary
-                    if let keys = value?.allKeys as? [String] {
-                        postArray = keys
-                    }
-                }
-            }) {(error) in print(error.localizedDescription) }
-                completion(postArray)
-            }
     
     
     /*

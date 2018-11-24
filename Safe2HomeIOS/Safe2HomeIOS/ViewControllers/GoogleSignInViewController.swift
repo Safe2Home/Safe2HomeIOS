@@ -4,19 +4,101 @@ import GoogleSignIn
 
 var currentUser: User?
 
-class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate {
-    @IBOutlet weak var SigninButton: GIDSignInButton!
+class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+    
+    
+    @IBOutlet weak var GIDSignInButton: GIDSignInButton!
+    @IBOutlet weak var GIDSignOutButton: UIButton!
+    
+    let dele = AppDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
-        //GIDSignIn.sharedInstance().signIn()
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         
-        // TODO(developer) Configure the sign-in button look/feel
-        // ...
+        print("user")
+        
+        
     }
+    
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            print("error")
+            return
+        }
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        // ...
+        
+        Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            if let error = error {
+                //...
+                return
+            }
+            self.checkIfUserIsLoggedIn()
+            //cUser = Auth.auth().currentUser
+            //self.SignIn.checkIfUserIsLoggedIn()
+            print("User logged in")
+            //currentUser = Auth.auth().currentUser
+            // User is signed in
+            // ...
+            
+            
+        }
+    }
+    
+    
+    func checkIfUserIsLoggedIn(){
+        if let uid = Auth.auth().currentUser?.uid{
+            //performSelector(#selector(dele.firebaseSignOut),withObjec : nil, afterDelay : 0)
+            
+            
+            print(uid)
+            Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with:{Snapshot -> Void in
+                if Snapshot.exists(){
+                    
+                    let alertController = UIAlertController(title: "Welcome Back!", message: "You've Already Signed In", preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "Safe To Home", style: .default){
+                        action in self.performSegue(withIdentifier: "SkipProfile", sender: self)
+                    }
+                    
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    print("exists")
+                }
+                else{
+                    let alertController = UIAlertController(title: "Welcome!", message: "Please create your Profile.", preferredStyle: .alert)
+                    
+                    let CreateProfileAction = UIAlertAction(title: "Create Profile", style: .default){
+                        
+                        action in self.performSegue(withIdentifier: "ToProfile", sender: self)
+                        }
+                    
+                    alertController.addAction(CreateProfileAction)
+                    self.present(alertController, animated: true, completion: nil)
+                    
+                    print("CreateProfile")
+                    
+                }
+            })
+            
+            
+            //if Auth.auth()?.currentUse?.uid == nil{
+            
+        }
+        
+    }
+    
+    @IBAction func SignOutAction(_ sender: UIButton) {
+        let dele = AppDelegate()
+        dele.firebaseSignOut()
+    }
+    
     
     
     /*

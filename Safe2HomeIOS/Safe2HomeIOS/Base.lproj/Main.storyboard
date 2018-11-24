@@ -760,11 +760,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfW-LT-2b3" customClass="GIDSignInButton">
-                                <rect key="frame" x="67" y="138" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JbX-Op-ceM">
                                 <rect key="frame" x="91" y="370" width="193" height="154"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -773,10 +768,31 @@
                                     <segue destination="3bZ-SE-h8N" kind="show" id="QzD-gL-pWB"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbJ-WY-soX">
+                                <rect key="frame" x="157" y="481" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q0J-n5-Ipg">
+                                <rect key="frame" x="157" y="481" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Out"/>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rfW-LT-2b3" customClass="GIDSignInButton">
+                                <rect key="frame" x="67" y="134" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Icp-th-gdt"/>
                     </view>
+                    <connections>
+                        <outlet property="GIDSignInButton" destination="rfW-LT-2b3" id="wYp-KA-yTX"/>
+                        <outlet property="GIDSignOutButton" destination="sbJ-WY-soX" id="Tir-Pp-KQH"/>
+                        <segue destination="nBX-1V-kr2" kind="show" identifier="ToProfile" id="3w5-wA-rzl"/>
+                        <segue destination="xak-h9-9g3" kind="show" identifier="SkipProfile" id="vf3-79-roC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6G-DB-LbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -840,7 +856,8 @@
         <image name="play" width="37.5" height="37.5"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="3w5-wA-rzl"/>
         <segue reference="QzD-gL-pWB"/>
-        <segue reference="asP-bq-V44"/>
+        <segue reference="vf3-79-roC"/>
     </inferredMetricsTieBreakers>
 </document>
