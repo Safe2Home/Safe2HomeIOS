@@ -40,12 +40,12 @@
 		57EDEC502197F593003E3961 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC4F2197F593003E3961 /* Strings.swift */; };
 		57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC522198B6E6003E3961 /* LogInViewController.swift */; };
 		57EDEC552198B6E6003E3961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC532198B6E6003E3961 /* SignUpViewController.swift */; };
-		6227B7AD21A9C95E002FC765 /* UploadUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227B7AC21A9C95E002FC765 /* UploadUserProfile.swift */; };
 		6259753021AFEED800101799 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259752F21AFEED800101799 /* LaunchScreenViewController.swift */; };
 		6259753221B0DFB800101799 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259753121B0DFB800101799 /* CircularTransition.swift */; };
 		62D7A70621AB944E0043D094 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70321AB944E0043D094 /* BaseViewController.swift */; };
-		62D7A70F21AF858B0043D094 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70D21AF858B0043D094 /* MenuViewController.swift */; };
-		62D7A71021AF858B0043D094 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */; };
+		62DCE5EF21B2017F000EA9A0 /* UploadUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCE5EE21B2017E000EA9A0 /* UploadUserProfile.swift */; };
+		62DCE5F221B201A5000EA9A0 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCE5F021B201A5000EA9A0 /* MenuTableViewCell.swift */; };
+		62DCE5F321B201A5000EA9A0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62DCE5F121B201A5000EA9A0 /* MenuViewController.swift */; };
 		8E6B0E9114088F12124B6403 /* Pods_Safe2HomeIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58566462903BAF7DCDD32B0 /* Pods_Safe2HomeIOS.framework */; };
 		F11AC66C17BB719B39E8E4AA /* Pods_Safe2HomeIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -108,12 +108,12 @@
 		57EDEC4F2197F593003E3961 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		57EDEC522198B6E6003E3961 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		57EDEC532198B6E6003E3961 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		6227B7AC21A9C95E002FC765 /* UploadUserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadUserProfile.swift; path = ../../../../Documents/2018_Fall/IOS_Decal/Safe2HomeIOS/Safe2HomeIOS/Safe2HomeIOS/UploadUserProfile.swift; sourceTree = "<group>"; };
 		6259752F21AFEED800101799 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		6259753121B0DFB800101799 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
 		62D7A70321AB944E0043D094 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		62D7A70D21AF858B0043D094 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../../../../toAndy/MenuViewController.swift; sourceTree = "<group>"; };
-		62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewCell.swift; path = ../../../../toAndy/MenuTableViewCell.swift; sourceTree = "<group>"; };
+		62DCE5EE21B2017E000EA9A0 /* UploadUserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserProfile.swift; sourceTree = "<group>"; };
+		62DCE5F021B201A5000EA9A0 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewCell.swift; path = Safe2HomeIOS/MenuTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		62DCE5F121B201A5000EA9A0 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = Safe2HomeIOS/MenuViewController.swift; sourceTree = SOURCE_ROOT; };
 		7CD9F756A189AEA32BDDE8D1 /* Pods-Safe2HomeIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOSUITests/Pods-Safe2HomeIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F54332F68EE6336869D7B4E /* Pods-Safe2HomeIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS.release.xcconfig"; sourceTree = "<group>"; };
 		A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe2HomeIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,8 +244,8 @@
 		1EE185E621A634C4008D3F91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */,
-				62D7A70D21AF858B0043D094 /* MenuViewController.swift */,
+				62DCE5F021B201A5000EA9A0 /* MenuTableViewCell.swift */,
+				62DCE5F121B201A5000EA9A0 /* MenuViewController.swift */,
 				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				1EE185E721A634DB008D3F91 /* TextAndCall.swift */,
 				1E6B33E621A5F183002BDFA9 /* ChatVC.swift */,
@@ -291,9 +291,9 @@
 		57EDEC512198B6CE003E3961 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				62DCE5EE21B2017E000EA9A0 /* UploadUserProfile.swift */,
 				57EDEC522198B6E6003E3961 /* LogInViewController.swift */,
 				57EDEC532198B6E6003E3961 /* SignUpViewController.swift */,
-				6227B7AC21A9C95E002FC765 /* UploadUserProfile.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -583,10 +583,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				57576D97219F36BA002514B1 /* ChatLogController.swift in Sources */,
+				62DCE5F321B201A5000EA9A0 /* MenuViewController.swift in Sources */,
 				1E936AB721A93DC400738873 /* Channel.swift in Sources */,
-				62D7A71021AF858B0043D094 /* MenuTableViewCell.swift in Sources */,
 				1E936AB521A93CE300738873 /* Messages.swift in Sources */,
-				6227B7AD21A9C95E002FC765 /* UploadUserProfile.swift in Sources */,
 				62D7A70621AB944E0043D094 /* BaseViewController.swift in Sources */,
 				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
 				1E6B33E721A5F183002BDFA9 /* ChatVC.swift in Sources */,
@@ -594,6 +593,7 @@
 				1EE185E821A634DB008D3F91 /* TextAndCall.swift in Sources */,
 				57EDEC442197ACFE003E3961 /* RequestPostAction.swift in Sources */,
 				57576D92219D34A5002514B1 /* MatchTableViewCell.swift in Sources */,
+				62DCE5F221B201A5000EA9A0 /* MenuTableViewCell.swift in Sources */,
 				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
 				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
 				6259753021AFEED800101799 /* LaunchScreenViewController.swift in Sources */,
@@ -606,7 +606,7 @@
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
 				57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */,
 				57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */,
-				62D7A70F21AF858B0043D094 /* MenuViewController.swift in Sources */,
+				62DCE5EF21B2017F000EA9A0 /* UploadUserProfile.swift in Sources */,
 				6259753221B0DFB800101799 /* CircularTransition.swift in Sources */,
 				57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */,
 				1E936ABB21A93E4200738873 /* MessageComposer.swift in Sources */,
