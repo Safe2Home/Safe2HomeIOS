@@ -8,13 +8,15 @@
 import UIKit
 import MessageUI
 
-class Text_view_controller: UIViewController, MFMessageComposeViewControllerDelegate {
+class Text_view_controller: BaseViewController, MFMessageComposeViewControllerDelegate {
     
     func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        addSlideMenuButton()
     }
     
     override func didReceiveMemoryWarning() {
@@ -23,29 +25,29 @@ class Text_view_controller: UIViewController, MFMessageComposeViewControllerDele
     }
     
     
-//
-//    func displayMessageInterface() {
-//        let composeVC = MFMessageComposeViewController()
-//        composeVC.messageComposeDelegate = self
-//
-//        // Configure the fields of the interface.
-//        composeVC.recipients = ["5107357766"]
-//        composeVC.body = "Test message. HELPPPPPPPPP!"
-//
-//        // Present the view controller modally.
-//        if MFMessageComposeViewController.canSendText() {
-//            self.present(composeVC, animated: true, completion: nil)
-//        } else {
-//            print("Can't send messages.")
-//        }
-//
-//
-//    }
+    //
+    //    func displayMessageInterface() {
+    //        let composeVC = MFMessageComposeViewController()
+    //        composeVC.messageComposeDelegate = self
+    //
+    //        // Configure the fields of the interface.
+    //        composeVC.recipients = ["5107357766"]
+    //        composeVC.body = "Test message. HELPPPPPPPPP!"
+    //
+    //        // Present the view controller modally.
+    //        if MFMessageComposeViewController.canSendText() {
+    //            self.present(composeVC, animated: true, completion: nil)
+    //        } else {
+    //            print("Can't send messages.")
+    //        }
+    //
+    //
+    //    }
     
-//
-//    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
-//        controller.dismiss(animated: true, completion: nil)
-//    }
+    //
+    //    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult) {
+    //        controller.dismiss(animated: true, completion: nil)
+    //    }
     
     let messageComposer = MessageComposer()
     

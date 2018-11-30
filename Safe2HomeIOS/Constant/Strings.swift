@@ -33,7 +33,7 @@ let firUserCurrLonNode = "CurrLongitude"
 let firPostTimeNode = "PostTime"
 let firCommentNode = "Comment"
 //match info
-let firMatchNode = "Match"
+let firMatchNode = "Matching"
 
 
 

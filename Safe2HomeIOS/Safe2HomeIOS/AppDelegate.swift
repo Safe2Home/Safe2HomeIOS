@@ -13,6 +13,7 @@ import CoreData
 import Firebase
 import GoogleSignIn
 import FirebaseAuth
+import AVFoundation
 
 var cUser: User?
 
@@ -43,13 +44,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func firebaseSignOut(){
         if cUser != nil{
-            let firebaseAuth = Auth.auth()
-            do {
-                try firebaseAuth.signOut()
-                print("signed out")
-            } catch let signOutError as NSError {
-                print ("Error signing out: %@", signOutError)
-            }
+          GIDSignIn.sharedInstance().signOut()
+          print("signed out")
         }
         //moveToHomeScreen()
     }

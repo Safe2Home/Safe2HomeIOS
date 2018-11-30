@@ -17,6 +17,7 @@ pod 'SDWebImage'
 pod 'GoogleSignIn'
 pod 'MessageKit'
 pod 'Firebase/Firestore'
+pod 'SwiftGifOrigin'
 post_install do |installer|
       installer.pods_project.targets.each do |target|
           if target.name == 'MessageKit'

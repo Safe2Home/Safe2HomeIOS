@@ -4,11 +4,13 @@ import GoogleSignIn
 
 var currentUser: User?
 
-class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GIDSignInDelegate {
+class GoogleSignInViewController: UIViewController, GIDSignInUIDelegate, GIDSignInDelegate {
     
     
     @IBOutlet weak var GIDSignInButton: GIDSignInButton!
     @IBOutlet weak var GIDSignOutButton: UIButton!
+    
+    
     
     let dele = AppDelegate()
     
@@ -17,6 +19,7 @@ class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GI
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        
         
         print("user")
         
@@ -29,12 +32,15 @@ class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GI
             print("error")
             return
         }
+        
+        
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
         // ...
         
         Auth.auth().signInAndRetrieveData(with: credential) { (authResult, error) in
+            
             if let error = error {
                 //...
                 return
@@ -53,15 +59,20 @@ class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GI
     
     
     func checkIfUserIsLoggedIn(){
-        if let uid = Auth.auth().currentUser?.uid{
+        if let current = Auth.auth().currentUser{
             //performSelector(#selector(dele.firebaseSignOut),withObjec : nil, afterDelay : 0)
             
             
-            print(uid)
-            Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with:{Snapshot -> Void in
+            Database.database().reference().child("Users").child(current.uid).observeSingleEvent(of: .value, with:{Snapshot -> Void in
                 if Snapshot.exists(){
                     
-                    let alertController = UIAlertController(title: "Welcome Back!", message: "You've Already Signed In", preferredStyle: .alert)
+                    print(Snapshot)
+                    var welcomemessage : String = "Welcome Back!"
+                    let objectUserName = Snapshot.childSnapshot(forPath: "Username").value as! String
+                    print(objectUserName)
+                    
+                    welcomemessage = "\(objectUserName) \(",")\(welcomemessage)"
+                    let alertController = UIAlertController(title: welcomemessage, message: "You've Already Signed In", preferredStyle: .alert)
                     let defaultAction = UIAlertAction(title: "Safe To Home", style: .default){
                         action in self.performSegue(withIdentifier: "SkipProfile", sender: self)
                     }
@@ -70,9 +81,13 @@ class GoogleSignInViewController: UITableViewController, GIDSignInUIDelegate, GI
                     self.present(alertController, animated: true, completion: nil)
                     
                     print("exists")
+                    
                 }
                 else{
-                    let alertController = UIAlertController(title: "Welcome!", message: "Please create your Profile.", preferredStyle: .alert)
+                    var welcomemessage : String = "Welcome"
+                    let GoogleName: String = current.displayName as! String
+                    welcomemessage = "\(welcomemessage) \(GoogleName)"
+                    let alertController = UIAlertController(title: welcomemessage, message: "Please create your Profile.", preferredStyle: .alert)
                     
                     let CreateProfileAction = UIAlertAction(title: "Create Profile", style: .default){
                         

@@ -41,6 +41,11 @@
 		57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC522198B6E6003E3961 /* LogInViewController.swift */; };
 		57EDEC552198B6E6003E3961 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57EDEC532198B6E6003E3961 /* SignUpViewController.swift */; };
 		6227B7AD21A9C95E002FC765 /* UploadUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6227B7AC21A9C95E002FC765 /* UploadUserProfile.swift */; };
+		6259753021AFEED800101799 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259752F21AFEED800101799 /* LaunchScreenViewController.swift */; };
+		6259753221B0DFB800101799 /* CircularTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259753121B0DFB800101799 /* CircularTransition.swift */; };
+		62D7A70621AB944E0043D094 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70321AB944E0043D094 /* BaseViewController.swift */; };
+		62D7A70F21AF858B0043D094 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70D21AF858B0043D094 /* MenuViewController.swift */; };
+		62D7A71021AF858B0043D094 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */; };
 		8E6B0E9114088F12124B6403 /* Pods_Safe2HomeIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58566462903BAF7DCDD32B0 /* Pods_Safe2HomeIOS.framework */; };
 		F11AC66C17BB719B39E8E4AA /* Pods_Safe2HomeIOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +109,11 @@
 		57EDEC522198B6E6003E3961 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		57EDEC532198B6E6003E3961 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		6227B7AC21A9C95E002FC765 /* UploadUserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadUserProfile.swift; path = ../../../../Documents/2018_Fall/IOS_Decal/Safe2HomeIOS/Safe2HomeIOS/Safe2HomeIOS/UploadUserProfile.swift; sourceTree = "<group>"; };
+		6259752F21AFEED800101799 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		6259753121B0DFB800101799 /* CircularTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularTransition.swift; sourceTree = "<group>"; };
+		62D7A70321AB944E0043D094 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		62D7A70D21AF858B0043D094 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuViewController.swift; path = ../../../../toAndy/MenuViewController.swift; sourceTree = "<group>"; };
+		62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MenuTableViewCell.swift; path = ../../../../toAndy/MenuTableViewCell.swift; sourceTree = "<group>"; };
 		7CD9F756A189AEA32BDDE8D1 /* Pods-Safe2HomeIOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOSUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOSUITests/Pods-Safe2HomeIOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		7F54332F68EE6336869D7B4E /* Pods-Safe2HomeIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe2HomeIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Safe2HomeIOS/Pods-Safe2HomeIOS.release.xcconfig"; sourceTree = "<group>"; };
 		A8B23E819FC8403FC0AA11CA /* Pods_Safe2HomeIOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe2HomeIOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +208,7 @@
 				57EDEC3E2197AA3A003E3961 /* WalkRequestPost.swift */,
 				57576D91219D34A5002514B1 /* MatchTableViewCell.swift */,
 				1EDD5E7D218B861A0035B977 /* Main.storyboard */,
+				6259753121B0DFB800101799 /* CircularTransition.swift */,
 				1EDD5E83218B861A0035B977 /* Assets.xcassets */,
 				1EDD5E85218B861A0035B977 /* LaunchScreen.storyboard */,
 				1EDD5E88218B861A0035B977 /* Info.plist */,
@@ -233,11 +244,15 @@
 		1EE185E621A634C4008D3F91 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				62D7A70E21AF858B0043D094 /* MenuTableViewCell.swift */,
+				62D7A70D21AF858B0043D094 /* MenuViewController.swift */,
 				1EDD5E7B218B861A0035B977 /* HomeVC.swift */,
 				1EE185E721A634DB008D3F91 /* TextAndCall.swift */,
 				1E6B33E621A5F183002BDFA9 /* ChatVC.swift */,
 				1E3155FE21915699003BBB80 /* HomeMapView.swift */,
 				57576D93219D41FB002514B1 /* GoogleSignInViewController.swift */,
+				62D7A70321AB944E0043D094 /* BaseViewController.swift */,
+				6259752F21AFEED800101799 /* LaunchScreenViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -458,6 +473,7 @@
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -479,6 +495,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -567,8 +584,10 @@
 			files = (
 				57576D97219F36BA002514B1 /* ChatLogController.swift in Sources */,
 				1E936AB721A93DC400738873 /* Channel.swift in Sources */,
+				62D7A71021AF858B0043D094 /* MenuTableViewCell.swift in Sources */,
 				1E936AB521A93CE300738873 /* Messages.swift in Sources */,
 				6227B7AD21A9C95E002FC765 /* UploadUserProfile.swift in Sources */,
+				62D7A70621AB944E0043D094 /* BaseViewController.swift in Sources */,
 				572578F52193E49F0095E5A4 /* YouTubeViewController.swift in Sources */,
 				1E6B33E721A5F183002BDFA9 /* ChatVC.swift in Sources */,
 				57EDEC4B2197EBD8003E3961 /* RequestPostObject.swift in Sources */,
@@ -577,6 +596,7 @@
 				57576D92219D34A5002514B1 /* MatchTableViewCell.swift in Sources */,
 				1EDD5E7C218B861A0035B977 /* HomeVC.swift in Sources */,
 				1E3155FF21915699003BBB80 /* HomeMapView.swift in Sources */,
+				6259753021AFEED800101799 /* LaunchScreenViewController.swift in Sources */,
 				1E3155FD21914C3E003BBB80 /* Location.swift in Sources */,
 				1EDD5E82218B861A0035B977 /* Safe2HomeIOS.xcdatamodeld in Sources */,
 				57EDEC502197F593003E3961 /* Strings.swift in Sources */,
@@ -586,6 +606,8 @@
 				1EDD5E7A218B861A0035B977 /* AppDelegate.swift in Sources */,
 				57EDEC542198B6E6003E3961 /* LogInViewController.swift in Sources */,
 				57576D94219D41FB002514B1 /* GoogleSignInViewController.swift in Sources */,
+				62D7A70F21AF858B0043D094 /* MenuViewController.swift in Sources */,
+				6259753221B0DFB800101799 /* CircularTransition.swift in Sources */,
 				57EDEC3F2197AA3A003E3961 /* WalkRequestPost.swift in Sources */,
 				1E936ABB21A93E4200738873 /* MessageComposer.swift in Sources */,
 				57EDEC4D2197F522003E3961 /* CurrentUser.swift in Sources */,
@@ -766,7 +788,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5TU9AZL82H;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -785,7 +807,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5TU9AZL82H;
+				DEVELOPMENT_TEAM = WFSX78SPQD;
 				INFOPLIST_FILE = Safe2HomeIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

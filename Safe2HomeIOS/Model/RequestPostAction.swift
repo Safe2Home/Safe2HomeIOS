@@ -14,7 +14,7 @@ import FirebaseStorage
 
 func addPost(client: Post) {
     let dbRef = Database.database().reference()
-
+    
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
     let dateString = dateFormatter.string(from: Date())
@@ -22,27 +22,50 @@ func addPost(client: Post) {
     let postDict: [String:AnyObject] = ["username": client.username as AnyObject,
                                         "date": dateString as AnyObject,
                                         "major": client.major as AnyObject,
-                                        "gender": client.gender as AnyObject]
+                                        "gender": client.gender as AnyObject,
+                                        "gender_pref": client.gender_pref as AnyObject,
+                                        "major_pref": client.major_pref as AnyObject,
+                                        "profile_image_url": client.profile_image_url as AnyObject,
+                                        "start_lat": client.start_lat as AnyObject,
+                                        "dest_lat": client.dest_lat as AnyObject,
+                                        "start_lon": client.start_lon as AnyObject,
+                                        "dest_lon": client.dest_lon as AnyObject,
+                                        "affiliation": client.affiliation as AnyObject]
     
     print("inside addPost")
     print("postDict")
     dbRef.child(firPostsNode).child(client.username).setValue(postDict)
-
+    
 }
 
 
-func addMatch(client1: Post, client2: Post) {
+func addMatch(client1: Post, client2: Post, chatId:String) {
     let dbRef = Database.database().reference()
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
     let dateString = dateFormatter.string(from: Date())
     
+    print("adding match for "+client1.username)
+    
     let postDict: [String:AnyObject] = ["username": client2.username as AnyObject,
                                         "date": dateString as AnyObject,
                                         "major": client2.major as AnyObject,
-                                        "gender": client2.gender as AnyObject]
-
+                                        "gender": client2.gender as AnyObject,
+                                        "gender_pref":client2.gender_pref as AnyObject,
+                                        "major_pref":client2.major_pref as AnyObject,
+                                        "profile_image_url":client2.profile_image_url as AnyObject,
+                                        "start_lat": client2.start_lat as AnyObject,
+                                        "dest_lat": client2.dest_lat as AnyObject,
+                                        "start_lon": client2.start_lon as AnyObject,
+                                        "dest_lon": client2.dest_lon as AnyObject,
+                                        "chat_id": chatId as AnyObject,
+                                        "affiliation": client2.affiliation as AnyObject]
+    
     dbRef.child(firMatchNode).child(client1.username).setValue(postDict)
+    //dbRef.child("Match").child(client1.username).setValue(postDict)
+    //dbRef.child("Matching2").child("\(client1.username)").setValue(postDict)
+    
+    print(postDict)
 }
 
 func getPosts(completion: @escaping ([Post]?) -> Void) {
@@ -58,25 +81,41 @@ func getPosts(completion: @escaping ([Post]?) -> Void) {
                     var objectDate = ""
                     var objectGender = ""
                     var objectMajor = ""
+                    var objectGenderPref = ""
+                    var objectMajorPref = ""
+                    var objectProfileImageUrl = ""
+                    var objectAffiliation = ""
+                    var objectStartLat = 0.0
+                    var objectDestLat = 0.0
+                    var objectStartLon = 0.0
+                    var objectDestLon = 0.0
                     
                     objectUserName = postObject!.value(forKey: "username") as! String
                     objectDate = postObject!.value(forKey: "date") as! String
-
                     objectGender = postObject!.value(forKey: "gender") as! String
-
                     objectMajor = postObject!.value(forKey: "major") as! String
+                    objectMajorPref = postObject!.value(forKey: "major_pref") as! String
+                    objectGenderPref = postObject!.value(forKey: "gender_pref") as! String
+                    objectProfileImageUrl = postObject!.value(forKey: "profile_image_url") as! String
+                    objectStartLat = postObject!.value(forKey: "start_lat") as! Double
+                    objectDestLat = postObject!.value(forKey: "dest_lat") as! Double
+                    objectStartLon = postObject!.value(forKey: "start_lon") as! Double
+                    objectDestLon = postObject!.value(forKey: "dest_lon") as! Double
+                    objectAffiliation = postObject!.value(forKey: "affiliation") as! String
                     //??maybe figure out a way to build profile when waiting for Andy
                     print("before pp    ")
-                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor)
+                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor, major_pref: objectMajorPref, gender_pref: objectGenderPref, profile_image_url: objectProfileImageUrl,affiliation: objectAffiliation,  start_lat:objectStartLat, dest_lat:objectDestLat, start_lon:objectStartLon, dest_lon:objectDestLon)
                     print(pp)
                     //this is sucessful
-                     postArray.append(pp)
+                    postArray.append(pp)
                 }
                 completion(postArray)
             } else {
+                print("No Data Available Fount in Posts")
                 completion(nil)
             }
         } else {
+            print("SnapShot Does not Exist: ", snapshot)
             completion(nil)
         }
     })
@@ -88,15 +127,17 @@ func deletePost(username: String) {
 func deleteMatch(username: String) {
     let dbRef = Database.database().reference()
     print("----------------------------------------------")
-    dbRef.child("Match").child(username).setValue(nil)
+    dbRef.child(firMatchNode).child(username).setValue(nil)
 }
 func getMatches(client1Name: String, completion: @escaping ([Post]?) -> Void) {
     // this should return a Post array, containing one post obejct, which is client 2
     let dbRef = Database.database().reference()
     var postArray: [Post] = []
-    dbRef.child("Match").observeSingleEvent(of: .value, with: { snapshot -> Void in
+    dbRef.child(firMatchNode).observeSingleEvent(of: .value, with: { snapshot -> Void in
+        
         if snapshot.exists() {
             if let posts = snapshot.value as? [String:AnyObject] {
+                print("posts")
                 
                 for postKey in posts.keys {
                     let postObject = posts[postKey]
@@ -104,19 +145,40 @@ func getMatches(client1Name: String, completion: @escaping ([Post]?) -> Void) {
                     var objectDate = ""
                     var objectGender = ""
                     var objectMajor = ""
+                    var objectGenderPref = ""
+                    var objectMajorPref = ""
+                    var objectProfileImageUrl = ""
+                    var objectChatId = ""
+                    var objectAffiliation = ""
+                    var objectStartLat = 0.0
+                    var objectDestLat = 0.0
+                    var objectStartLon = 0.0
+                    var objectDestLon = 0.0
+                    
                     
                     objectUserName = postObject!.value(forKey: "username") as! String
                     objectDate = postObject!.value(forKey: "date") as! String
                     objectGender = postObject!.value(forKey: "gender") as! String
                     objectMajor = postObject!.value(forKey: "major") as! String
-                    //??maybe figure out a way to build profile when waiting for Andy
+                    objectMajorPref = postObject!.value(forKey: "major_pref") as! String
+                    objectGenderPref = postObject!.value(forKey: "gender_pref") as! String
+                    objectProfileImageUrl = postObject!.value(forKey: "profile_image_url") as! String
+                    objectAffiliation = postObject!.value(forKey: "affiliation") as! String
+                    objectStartLat = postObject!.value(forKey: "start_lat") as! Double
+                    objectDestLat = postObject!.value(forKey: "dest_lat") as! Double
+                    objectStartLon = postObject!.value(forKey: "start_lon") as! Double
+                    objectDestLon = postObject!.value(forKey: "dest_lon") as! Double
+                    objectChatId = postObject!.value(forKey: "chat_id") as! String
                     
-                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor)
+                    //??maybe figure out a way to build profile when waiting for Andy
+                    let pp = Post(username: objectUserName, dateString: objectDate, gender: objectGender, major: objectMajor, major_pref: objectMajorPref, gender_pref: objectGenderPref, profile_image_url: objectProfileImageUrl,affiliation:objectAffiliation, start_lat:objectStartLat, dest_lat:objectDestLat, start_lon:objectStartLon, dest_lon:objectDestLon)
+                    pp.chat_id = objectChatId
+                    
+                    print(client1Name, pp.username)
                     // Help!! I don't know how to get the post on branch
-                    if (client1Name == pp.username) {
+                    if (client1Name == postKey) {
                         postArray.append(pp)
                         print("client2:")
-                        print(pp)
                         print("client1")
                         print(client1Name)
                         deleteMatch(username: client1Name)
@@ -178,9 +240,9 @@ func getMatches(client1Name: String, completion: @escaping ([Post]?) -> Void) {
 func addPost_scratch(username: String, comment: String) {
     // Uncomment the lines beneath this one if you've already connected Firebase:
     let dbRef = Database.database().reference()
-//    let data = UIImageJPEGRepresentation(postImage, 1.0)
-//    let path = "Images/\(UUID().uuidString)"
-//    
+    //    let data = UIImageJPEGRepresentation(postImage, 1.0)
+    //    let path = "Images/\(UUID().uuidString)"
+    //
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
     let dateString = dateFormatter.string(from: Date())

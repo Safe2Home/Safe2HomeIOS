@@ -10,35 +10,33 @@ import UIKit
 import CoreLocation
 import MapKit
 import Firebase
+import FirebaseAuth
+import SwiftGifOrigin
 
 
 
-final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
-
+final class HomeVC: BaseViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITableViewDelegate, UITableViewDataSource {
+    
     
     let manager: CLLocationManager = global_manager
+    let gif = UIImage.gif(url: "https://www.mellatweb.com/uploads/posts/image/2018/2018-07/20-VnKCQ-2018-07-08-14:02.jpg")
     var current_location: CLLocation?
     let regionRadius: CLLocationDistance = 1000
     var selected_annotation: MKAnnotation?
-    
+    var match_permit = false
     var destPlacemark: MKPlacemark?
     var sourcePlacemark: MKPlacemark?
     
-    let currentUser = CurrentUser()
+    var currentUser =  CurrentUser(id: (Auth.auth().currentUser?.uid)!)
     
-    var posts_array: [Post] = []
     
-    var currentPost = Post(username: "dummyname", dateString: "dummystring", gender: "dummygender", major: "dummymajor")
+    
     
     
     @IBOutlet weak var map: HomeMapView!
     
     @IBOutlet weak var RequestMatchTableView: UITableView!
     
-    
-    //    var isSearching = false
-    //    // more about search bar see
-    //    // https://www.youtube.com/watch?v=zgP_VHhkroE
     
     @IBOutlet weak var destinationLabel: UILabel!
     
@@ -60,8 +58,8 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     //********************
     //MATCHING SUCESS ZONE
     //********************
-  @IBOutlet weak var match_success_view: UIView!
-    
+    @IBOutlet weak var match_success_view: UIView!
+    @IBOutlet weak var LoadingGif: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var major: UILabel!
     @IBOutlet weak var gender: UILabel!
@@ -72,32 +70,69 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
             let vc = ChatVC(user: Auth.auth().currentUser!, channel: channel)
             navigationController?.pushViewController(vc, animated: true)
         }
-        else{
-//            let channel = Channel(name: "default")
-//            current_channel = channel
-//            let vc = ChatVC(user: Auth.auth().currentUser!, channel: channel)
-//            navigationController?.pushViewController(vc, animated: true)
-        }
+    }
+   
+    @IBAction func Conclude(_ sender: UIButton) {
+    let alertController = UIAlertController(
+            title: "Conclude Session?",
+            message: "You will not be able to chat with your walking buddy anymore", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title:
+            "Cancel", style: .cancel, handler: nil)
+        let concludeAction = UIAlertAction(title:
+            "Conclude", style: .default, handler: { void in
+                self.setView(view: self.matching_view, hidden: true)
+                self.setView(view: self.match_success_view, hidden: true)
+                deleteMatch(username: self.currentUser.username)
+                if let other_match = self.name.text{
+                    deleteMatch(username: other_match)
+                }
+        })
+        alertController.addAction(cancelAction)
+        alertController.addAction(concludeAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    func matchSuccess(post:Post){
+    
+    func matchSuccess(post:[Post]?){
+        guard let post = post else{
+            print("Warning: No post found")
+            return
+        }
+        match_permit = false
         setView(view: matching_view, hidden: true)
         setView(view: match_success_view, hidden: false)
-        name.text = post.username
-        major.text = post.major
-        gender.text = post.gender
+        name.text = post[1].username
+        major.text = post[1].major
+        gender.text = post[1].gender
+        affiliation.text = post[1].affiliation
         //Make a new channel
         let ref:DocumentReference = channelReference.document()
         let myId:String = ref.documentID
-        let channel = Channel(name: "default", id: myId)
+        let channel = Channel(name: (name.text ?? "anonymous") + " ∞ " + currentUser.username, id: myId)
         channelReference.document(myId).setData(channel.representation, completion:{ error in
             if let e = error {
                 print("Error saving channel: \(e.localizedDescription)")
             }
         }
         )
+        addMatch(client1: post[1], client2: post[0], chatId:myId)
         current_channel = channel
-        
+        return
+    }
+    
+    func matchSuccess2(post: Post){
+        match_permit = false
+        setView(view: matching_view, hidden: true)
+        setView(view: match_success_view, hidden: false)
+        name.text = post.username
+        major.text = post.major
+        gender.text = post.gender
+        affiliation.text = post.affiliation
+        guard let myId = post.chat_id else {
+            print("Warning: Match with no chat room id")
+            return
+        }
+        current_channel = Channel(name: currentUser.username + " ∞ " + post.username, id: myId)
     }
     
     
@@ -111,6 +146,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     @IBOutlet weak var matching_view: UIView!
     @IBAction func cancel_matching(_ sender: UIButton) {
         setView(view: matching_view, hidden: true)
+        match_permit = false
         deletePost(username: currentUser.username)
     }
     
@@ -171,18 +207,55 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.A"
         let dateString = dateFormatter.string(from: Date())
         
-        print(4)
-        currentPost = Post(username: currentUser.username, dateString: dateString, gender: currentUser.gender, major: currentUser.major)
-        print(5)
-        let postVC = PostsTableViewController()
-        
-        if let post = postVC.match(currentPost: currentPost, posts_array: posts_array){
-            matchSuccess(post:post)
+        guard let destination = selected_annotation else{
+            let alertController = UIAlertController(
+                title: "Destination Not Selected",
+                message: "In order to be matched with a walking buddy, select your destination on the map", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title:
+                "Okay", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
         }
-        //        RequestTableView.reloadData()
-        //addPost(client: currentPost)
-        print(6)
-        setView(view: matching_view, hidden: false)
+        guard let start = current_location else{
+            let alertController = UIAlertController(
+                title: "Location Disabled",
+                message: "In order to be matched with a walking buddy, enable your location services", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title:
+                "Okay", style: .cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
+        let raw_affiliation = currentUser.email
+        let affiliation_index = raw_affiliation.firstIndex(of: "@")
+        var sliced_affiliation = raw_affiliation
+        if let aff_index = affiliation_index{
+            let nextIndex = raw_affiliation.index(aff_index, offsetBy: 1)
+            sliced_affiliation = String(raw_affiliation.suffix(from: nextIndex))
+        }
+        
+        let currentPost = Post(username: currentUser.username, dateString: dateString, gender: currentUser.gender, major: currentUser.major, major_pref: currentUser.major_pref, gender_pref: currentUser.gender_pref, profile_image_url: currentUser.profile_image_url, affiliation: sliced_affiliation, start_lat:start.coordinate.latitude, dest_lat:destination.coordinate.latitude, start_lon:start.coordinate.longitude, dest_lon:destination.coordinate.longitude)
+        
+        let postVC = PostsTableViewController()
+        self.setView(view: self.matching_view, hidden: false)
+        getPosts() { (posts) in
+            if let posts = posts {
+                print(posts)
+                
+                if let post = postVC.match(currentPost: currentPost, posts_array: posts){
+                    self.matchSuccess(post:post)
+                    return
+                }
+                
+            }
+            self.match_permit = true
+            self.RequestMatchTableView.reloadData()
+            //        RequestTableView.reloadData()
+            addPost(client: currentPost)
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -191,14 +264,25 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         //pcell.commentmessage.text = comments[indexPath.row]["message"] as! String
         
         //        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PostsTableViewController.runTimedCode), userInfo: nil, repeats: true)
-        getMatches(client1Name: currentUser.username) { (matches) in
-//            client1Name: currentUser.username
-            if let matches = matches {
-                print(3)
-                //pcell.MatcherName.text = posts[0].username
-                self.RequestMatchTableView.reloadData()
-            }
+        if !match_permit{
+            return pcell
         }
+        getMatches(client1Name: currentUser.username) { (matches) in
+            //            client1Name: currentUser.username
+            if let matches = matches {
+                for match in matches{
+                    
+                    self.matchSuccess2(post: match)
+                    
+                    return
+                }
+                print(matches, self.currentUser.username)
+                
+            }
+            sleep(3)
+            self.RequestMatchTableView.reloadData()
+        }
+        print("waiting for matches ...")
         return pcell
     }
     
@@ -208,10 +292,9 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     
     //ART
     func setParameters(){
-        destinationLabel.textAlignment = .center
-        destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)
+        //destinationLabel.textAlignment = .center
+        //destinationLabel.font = UIFont(name: "Superclarendon-Bold", size: 17)
         searchRoute.layer.cornerRadius = 4
-        searchRoute.backgroundColor = .blue
         searchRoute.center.x = self.view.center.x
         searchRoute.center.y = self.view.center.y
         matching_view.layer.cornerRadius = 10
@@ -224,30 +307,29 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         match_success_view.layer.shadowOffset = CGSize(width: 3, height: 3)
         match_success_view.layer.shadowOpacity = 0.7
         match_success_view.layer.shadowRadius = 4.0
-        destinationText.textAlignment = .center
+        match_success_view.layer.zPosition = 2000
+        //destinationText.textAlignment = .center
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSlideMenuButton()
+        LoadingGif.image = gif
+        
+        let id = Auth.auth().currentUser!.uid
+        
+        getProfile(uid: id){ (user) in
+            
+            self.currentUser = user!
+        }
         
         RequestMatchTableView.delegate = self
         RequestMatchTableView.dataSource = self
         
-        var mainColor = UIColor(red: 24,
-                                green: 59,
-                                blue: 29,
-                                alpha: 1)
-        
         //destinationLabel.textColor = UIColor.blue
         setParameters()
         
-        getPosts() { (posts) in
-            print("maybe")
-            if let posts = posts {
-                self.posts_array = posts
-                print(posts)
-            }
-        }
+        
         
         //        searchDestination.delegate = self
         //        searchDestination.returnKeyType = UIReturnKeyType.done
@@ -308,7 +390,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         current_location = locations.last
         if let location = current_location{
-            centerMapOnLocation(location: location)
+            //centerMapOnLocation(location: location)
             global_location = location
             self.sourcePlacemark = MKPlacemark(coordinate: location.coordinate)
         }
@@ -328,7 +410,7 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
     }
     
     @objc func LocationTapped(_ sender: UITapGestureRecognizer){
-   
+        
         let pt:CGPoint = sender.location(in: map)
         let location = map.convert(pt, toCoordinateFrom: map)
         let annotation = MKPointAnnotation()
@@ -342,18 +424,13 @@ final class HomeVC: UIViewController, CLLocationManagerDelegate, MKMapViewDelega
         self.map.removeOverlays(self.map.overlays)
     }
     
-//    func showChatController() {
+    //    func showChatController() {
     //        let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
-//        navigationController?.pushViewController(ChatLogController, animated: true)
-//    }
+    //        navigationController?.pushViewController(ChatLogController, animated: true)
+    //    }
     // error here. this func has to be indside a tableview controller
     
     
     
     
 }
-
-
-
-
-

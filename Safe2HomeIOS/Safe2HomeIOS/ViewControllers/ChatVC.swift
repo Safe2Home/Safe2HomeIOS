@@ -13,6 +13,7 @@ import FirebaseFirestore
 
 
 class ChatVC: MessagesViewController {
+    var currentUser =  CurrentUser(id: (Auth.auth().currentUser?.uid)!)
     
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
@@ -21,12 +22,18 @@ class ChatVC: MessagesViewController {
     private var messages: [Message] = []
     private var messageListener: ListenerRegistration?
     override func viewDidLoad() {
+        
+        let uid = Auth.auth().currentUser!.uid
+        
+        self.currentUser = CurrentUser(id: uid)
+        
+        
         guard let id = channel.id else {
             navigationController?.popViewController(animated: true)
             return
         }
-//        let testMessage = Message(user: user, content: "I love pizza, what is your favorite kind?")
-//        insertNewMessage(testMessage)
+        //        let testMessage = Message(user: user, content: "I love pizza, what is your favorite kind?")
+        //        insertNewMessage(testMessage)
         self.tabBarController?.tabBar.isHidden = true
         reference = db.collection(["channels", id, "thread"].joined(separator: "/"))
         super.viewDidLoad()
@@ -44,13 +51,13 @@ class ChatVC: MessagesViewController {
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
-
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
-
+    
     init(user: User, channel: Channel) {
         self.user = user
         self.channel = channel
@@ -111,26 +118,28 @@ class ChatVC: MessagesViewController {
     
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 extension ChatVC: MessagesDataSource {
+    
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messages.count
     }
     
     // 1
     func currentSender() -> Sender {
-        return Sender(id:  CurrentUser().id, displayName: CurrentUser().username)
+        
+        return Sender(id: currentUser.id, displayName: currentUser.username)
     }
     
     // 2
@@ -192,8 +201,7 @@ extension ChatVC: MessagesDisplayDelegate {
                          in messagesCollectionView: MessagesCollectionView) -> UIColor {
         
         // 1
-        return isFromCurrentSender(message: message) ? .green : .white
-    }
+        return isFromCurrentSender(message: message) ? .orange : .lightGray}//UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
     
     func shouldDisplayHeader(for message: MessageType, at indexPath: IndexPath,
                              in messagesCollectionView: MessagesCollectionView) -> Bool {

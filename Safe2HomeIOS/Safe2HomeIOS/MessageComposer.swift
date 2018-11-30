@@ -1,7 +1,7 @@
 import Foundation
 import MessageUI
 
-let textMessageRecipients = ["5107357766", "5105705197", "5105705300"] // for pre-populating the recipients list (optional, depending on your needs)
+let textMessageRecipients = ["5105705197"] // for pre-populating the recipients list (optional, depending on your needs)
 
 class MessageComposer: NSObject, MFMessageComposeViewControllerDelegate {
     

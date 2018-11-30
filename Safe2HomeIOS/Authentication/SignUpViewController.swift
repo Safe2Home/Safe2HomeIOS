@@ -6,7 +6,10 @@
 //  Copyright © 2017 org.iosdecal. All rights reserved.
 //
 
+import Foundation
 import UIKit
+import FirebaseDatabase
+import FirebaseStorage
 import FirebaseAuth
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
@@ -15,15 +18,20 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let dele = AppDelegate()
         dele.firebaseSignOut()
     }
+    
+    
     @IBOutlet weak var SignOutButton: UIButton!
     
     @IBOutlet weak var nameTextField: UITextField!
     
-    @IBOutlet weak var emailTextField: UITextField!
     
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var GenderGD: UILabel!
+    @IBOutlet weak var academicDropdown: UILabel!
+    @IBOutlet weak var PGender: UILabel!
+    @IBOutlet weak var PacademicDropdown: UILabel!
+    @IBOutlet weak var EmergencyPhone: UITextField!
     
-    @IBOutlet weak var passwordVerificationTextField: UITextField!
+    
     
     var userName = ""
     var gender = ""
@@ -37,6 +45,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         guard let gender = gender_dropdown.currentTitle else { return }
         guard let academic_focus = Academic_Focus.currentTitle else { return }
         guard let preferredMajor = preferred_major.currentTitle else { return }
+        guard let PaDropdown = preferred_gender.currentTitle else { return }
+        guard let Emerg_phone = EmergencyPhone.text else { return }
         
         if name == "" || gender == "Gender" || academic_focus == "Academic Focus" || preferredMajor == "Partner's Preferred Major" {
             let alertController = UIAlertController(title: "Form Error.", message: "Please fill in form completely.", preferredStyle: .alert)
@@ -45,15 +55,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             present(alertController, animated: true, completion: nil)
             
         } else {
-            let currentUser = Auth.auth().currentUser
-            var userProfile = CurrentUser()
-            userProfile.username = name
-            userProfile.gender = gender
-            userProfile.major = academic_focus
-            userProfile.preferredmajor = preferredMajor
+            if let currentUser = Auth.auth().currentUser{
             
+                
+                let userProfile = CurrentUser(id: currentUser.uid, email: currentUser.email!)
+                
+                userProfile.username = name
+                userProfile.gender = gender
+                userProfile.major = academic_focus
+                userProfile.major_pref = preferredMajor
+                userProfile.gender_pref = PaDropdown
+                userProfile.emerg_phone = Emerg_phone
+                userProfile.profile_image_url = "loading"
+      
             createProfile(client: userProfile)
-            
+            }
         }
         
         
@@ -69,15 +85,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    
+    
+    
     var gender_dropdown = dropDownBtn()
     var Academic_Focus = dropDownBtn()
+    var preferred_gender = dropDownBtn()
     var preferred_major = dropDownBtn()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         self.nameTextField.delegate = self
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:))))
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
         
         // Do any additional setup after loading the view.
         
@@ -91,38 +117,47 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         Academic_Focus.setTitle("Academic Focus", for: .normal)
         Academic_Focus.translatesAutoresizingMaskIntoConstraints = false
         
+        preferred_gender = dropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        preferred_gender.setTitle("Partner's Preferred Gender", for: .normal)
+        preferred_gender.translatesAutoresizingMaskIntoConstraints = false
+        
         preferred_major = dropDownBtn.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         preferred_major.setTitle("Partner's Preferred Major", for: .normal)
         preferred_major.translatesAutoresizingMaskIntoConstraints = false
-        
+
         //Add Button to the View Controller
         self.view.addSubview(gender_dropdown)
-        self.view.addSubview(Academic_Focus)
-        self.view.addSubview(preferred_major)
+        self.view.insertSubview(Academic_Focus, belowSubview: gender_dropdown)
+        self.view.insertSubview(preferred_gender, belowSubview: Academic_Focus)
+        self.view.insertSubview(preferred_major, belowSubview: preferred_gender)
         
         //button Constraints
-        gender_dropdown.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        gender_dropdown.centerYAnchor.constraint(equalTo: emailTextField!.centerYAnchor).isActive = true
-        gender_dropdown.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        gender_dropdown.centerXAnchor.constraint(equalTo: GenderGD!.centerXAnchor).isActive = true
+        gender_dropdown.centerYAnchor.constraint(equalTo: GenderGD!.centerYAnchor).isActive = true
+        gender_dropdown.widthAnchor.constraint(equalToConstant: 130).isActive = true
         gender_dropdown.heightAnchor.constraint(equalToConstant: 37).isActive = true
         
         Academic_Focus.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        Academic_Focus.centerYAnchor.constraint(equalTo: passwordTextField!.centerYAnchor).isActive = true
+        Academic_Focus.centerYAnchor.constraint(equalTo: academicDropdown!.centerYAnchor).isActive = true
         Academic_Focus.widthAnchor.constraint(equalToConstant: 260).isActive = true
         Academic_Focus.heightAnchor.constraint(equalToConstant: 37).isActive = true
         
+        preferred_gender.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        preferred_gender.centerYAnchor.constraint(equalTo: PGender!.centerYAnchor).isActive = true
+        preferred_gender.widthAnchor.constraint(equalToConstant: 260).isActive = true
+        preferred_gender.heightAnchor.constraint(equalToConstant: 37).isActive = true
+        
         preferred_major.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        preferred_major.centerYAnchor.constraint(equalTo: passwordVerificationTextField!.centerYAnchor).isActive = true
+        preferred_major.centerYAnchor.constraint(equalTo: PacademicDropdown!.centerYAnchor).isActive = true
         preferred_major.widthAnchor.constraint(equalToConstant: 260).isActive = true
         preferred_major.heightAnchor.constraint(equalToConstant: 37).isActive = true
+        
+        
         
         //Set the drop down menu's options
         gender_dropdown.dropView.dropDownOptions = ["Male",
                                                     "Female",
-                                                    "Trans Male",
-                                                    "Trans Female",
-                                                    "Gender Queer/Non-Conforming",
-                                                    "Different Identity"]
+                                                    "Other"]
         
         Academic_Focus.dropView.dropDownOptions =
             ["Arts & Humanities",
@@ -142,7 +177,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
              "Social Sciences"]
         
         preferred_major.dropView.dropDownOptions =
-            ["Arts & Humanities",
+            ["All",
+             "Arts & Humanities",
              "Biological Sciences",
              "Business",
              "Computer Science",
@@ -158,7 +194,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
              "Pre-Law",
              "Social Sciences"]
         
+        preferred_gender.dropView.dropDownOptions = ["Male",
+                                                     "Female",
+                                                     "Other",
+                                                     "All"]
+        
+        
+        
+        
+        
     }
+    
     
     
     
@@ -187,7 +233,9 @@ class dropDownBtn: UIButton, dropDownProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.blue
+        self.backgroundColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
+        setTitleColor(UIColor.white, for: .normal)
+        
         
         dropView = dropDownView.init(frame: CGRect.init(x: 0, y: 0, width: 0, height: 0))
         dropView.delegate = self
@@ -266,10 +314,13 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource  {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+    
         
-        tableView.backgroundColor = UIColor.blue
-        self.backgroundColor = UIColor.lightGray
+        tableView.backgroundColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
         
+        self.backgroundColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
+        
+        //self.tintColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -301,13 +352,16 @@ class dropDownView: UIView, UITableViewDelegate, UITableViewDataSource  {
         let cell = UITableViewCell()
         
         cell.textLabel?.text = dropDownOptions[indexPath.row]
-        cell.backgroundColor = UIColor.blue
+        //cell.textLabel?.textColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
+        //cell.textLabel?.textColor = UIColor.init(red: 249, green: 166, blue: 2, alpha: 0)
+
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.delegate.dropDownPressed(string: dropDownOptions[indexPath.row])
-        //self.tableView.deselectRow(at: indexPath, animated: true)
+        self.tableView.deselectRow(at: indexPath, animated: true)
     }
     
 }

@@ -19,6 +19,16 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     var userEmail = ""
     var userPassword = ""
     
+    @IBOutlet weak var Name: UILabel!
+    @IBOutlet weak var Email: UILabel!
+    @IBOutlet weak var Gender: UILabel!
+    @IBOutlet weak var Academic_Focus: UILabel!
+    @IBOutlet weak var Preferred_Gender: UILabel!
+    @IBOutlet weak var Preferred_Academic_Focus: UILabel!
+    @IBOutlet weak var Emergencey_Phone_Number: UILabel!
+    
+    
+    
     @IBAction func logInPressed(_ sender: UIButton) {
         // TODO:
         // Replace the following line with the code in the README and complete the
@@ -40,7 +50,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             
                 if error == nil {
                 
-                    self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
+                    //self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
             }
 
                     if (error != nil){
@@ -69,12 +79,31 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.emailTextField.delegate = self
-        self.passwordTextField.delegate = self
-
+       
+        
+        let cUser = Auth.auth().currentUser!
+        
+        var currentUser = CurrentUser(id: cUser.uid, email: cUser.email!)
+            
+        getProfile(uid: cUser.uid){ (user) in
+            
+            currentUser = user!
+            self.Name.text =  currentUser.username
+            self.Email.text = currentUser.email
+            self.Gender.text = currentUser.gender
+            self.Academic_Focus.text = currentUser.major
+            self.Preferred_Gender.text = currentUser.gender_pref
+            self.Preferred_Academic_Focus.text = currentUser.major_pref
+            self.Emergencey_Phone_Number.text = currentUser.emerg_phone
+        }
+        
+        print(currentUser.gender)
+        
+        
+            
         // Do any additional setup after loading the view.
+        
     }
-
     //TO DO:
     // Authenticate users automatically if they already signed in earlier.
     // Hint: Just check if the current user is nil using firebase and if not, perform a segue. You're welcome :)
@@ -82,7 +111,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         //YOUR CODE HERE
         if Auth.auth().currentUser != nil {
             //performSegue(withIdentifier:segueLogInToSignUp, sender: self)
-            self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
+            //self.performSegue(withIdentifier: segueLogInToMainPage, sender: self)
         }
         
     }
