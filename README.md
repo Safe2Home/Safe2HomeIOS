@@ -1,2 +1,2 @@
 # Safe2HomeIOS
-Safe2Home features a wide collection of functionalities including route suggestion, emergency SOS and finding walk buddies. The app mainly relies on the Google Mapbox API, but more features will come as soon as we start building the basics. Find your best friend and start enjoying safe travels today!
+Safe2Home is a safety app that keeps you safe when you walk alone! It features a wide collection of functionalities including matching walk buddies, route finding, emergency SOS and crime data viewing. The app mainly relies on the map kit, message kit, call kit and Firebase API. Find your best friend and start enjoying safe travels to home today!
