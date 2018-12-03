@@ -5,4 +5,4 @@ Safe2Home features a wide collection of functionalities including route suggesti
 The current build uses XCode 10.1 and supports any IOS device with IOS 12.0 and above.
 
 # Demo
-Youtube: https://www.youtu.be/2yTbyzdaHww
+Youtube: https://youtu.be/2yTbyzdaHww
